@@ -25,7 +25,16 @@ public class MercadoSoldados extends JPanel {
 	private JLabel lblTipoSoldado;
 	private JLabel lblTotal;
 	private MercadoTipo mercadoTipo;
+	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	
+	public LinkedList<Batallon> getBatallones() {
+		return batallones;
+	}
+
+	public void setBatallones(LinkedList<Batallon> batallones) {
+		this.batallones = batallones;
+	}
+
 	private FocusAdapter miFocusAdapter=new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -37,11 +46,15 @@ public class MercadoSoldados extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public MercadoSoldados( Tipo tipoSoldadosInfo) {
+	public MercadoSoldados( Tipo tipos) {
+		
 		setLayout(null);
-		Batallon batallon=new Batallon(1, tipoSoldadosInfo);
-		especialidades = Generador.getEspecialidadesEnsayo(tipoSoldadosInfo,miFocusAdapter);
+		int valorBatallon=1;
+		Batallon batallon=new Batallon(valorBatallon, tipos);
+		
+		especialidades = Generador.getEspecialidadesEnsayo(tipos,miFocusAdapter);
 
+		valorBatallon++;
 		JLabel lblBatallonNumero = new JLabel("Batallon numero ");
 		int height2 = 16;
 		lblBatallonNumero.setBounds(62, 51, 165, height2);
@@ -63,7 +76,7 @@ public class MercadoSoldados extends JPanel {
 		lblTipo.setBounds(62, 135, 56, height2);
 		add(lblTipo);
 		
-		String tipo=mercadoTipo.comboBox.getSelectedItem().toString();
+		String tipo=MercadoTipo.comboBox.getSelectedItem().toString();
 		lblTipoSoldado = new JLabel(tipo);
 		lblTipoSoldado.setBounds(171, 135, 106, height2);
 		add(lblTipoSoldado);
@@ -76,11 +89,15 @@ public class MercadoSoldados extends JPanel {
 		JLabel lblTotalf = new JLabel("Total");
 		lblTotalf.setBounds(62, 390, 56, height2);
 		add(lblTotalf);
+		if(sumaSoldados()<10 || sumaSoldados()>10) {
+			lblTotal = new JLabel("no cumples con la cantidad exigida");
+		}else {
+			lblTotal = new JLabel(String.valueOf(sumaSoldados()));
+		}
 
-		lblTotal = new JLabel(String.valueOf(sumaSoldados()));
 		lblTotal.setBounds(245, 390, 56, height2);
 		add(lblTotal);
-
+		batallones.add(batallon);
 	}
 
 	private int sumaSoldados() {
@@ -90,6 +107,7 @@ public class MercadoSoldados extends JPanel {
 			int cantidad = Integer.valueOf(text);
 			total += cantidad;
 		}
+
 		return total;
 	}
 

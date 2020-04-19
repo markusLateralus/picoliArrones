@@ -37,34 +37,38 @@ public class MercadoSoldadosPrueba extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MercadoSoldadosPrueba frame = new MercadoSoldadosPrueba();
-					frame.setVisible(true);
+					mercadoSoldadosPrueba = new MercadoSoldadosPrueba();
+					mercadoSoldadosPrueba.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
+	public static MercadoSoldadosPrueba mercadoSoldadosPrueba = null;
+
+
+
+	public static MercadoSoldadosPrueba getMercadoSoldadosPrueba() {
+		if (mercadoSoldadosPrueba == null) {
+			new MercadoSoldadosPrueba();
+		}
+		return mercadoSoldadosPrueba;
+	}
 
 	/**
 	 * Create the frame.
 	 */
-	public MercadoSoldadosPrueba() {
+	private MercadoSoldadosPrueba() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 678, 479);
 		JButton btnDialogo = new JButton("crear Batallon");
 		btnDialogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			//	Batallon batallon = new Batallon(1, Tipo.INFANTERIA);
-		    //	MercadoSoldadosInfo info = new MercadoSoldadosInfo();
-				//mercadoSoldadoPruebaDialog=new MercadoSoldadoDialog();
-			//	mercadoSoldadoPruebaDialog.setVisible(true);
 				ArrayList <Tipo>listaTipos=new ArrayList <Tipo>();
 				listaTipos.add(Tipo.ARQUERIA);
 				listaTipos.add(Tipo.CABALLERIA);
 				listaTipos.add(Tipo.INFANTERIA);
-				//MercadoTipo m=new MercadoTipo(LISTA);
-				//m.setVisible(true);
 				mercadoTipoDialog=new MercadoTipoDialog(listaTipos);
 				mercadoTipoDialog.setVisible(true);
 			}
@@ -77,7 +81,10 @@ public class MercadoSoldadosPrueba extends JFrame {
 
 	
 	
+
+
+
 	public JTextArea getTextAreaInformativo() {
-		return  textAreaInformativo;
+		return textAreaInformativo;
 	}
 }

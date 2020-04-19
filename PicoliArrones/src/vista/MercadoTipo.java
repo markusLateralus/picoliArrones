@@ -12,14 +12,14 @@ import modelo.Tipo;
 
 public class MercadoTipo extends JPanel {
 	public static JComboBox <Tipo>comboBox;
-	private ArrayList<Tipo> tipoSoldadosInfo;
+	private ArrayList<Tipo> tipos;
 
 	/**
 	 * Create the panel.
 	 */
-	public MercadoTipo(ArrayList <Tipo> tipoSoldadosInfo) {
+	public MercadoTipo(ArrayList <Tipo> tipos) {
 		setLayout(null);
-		this.tipoSoldadosInfo=tipoSoldadosInfo;
+		this.tipos=tipos;
 		JLabel lblNewLabel = new JLabel("elegir Tipo:");
 		lblNewLabel.setBounds(34, 89, 69, 14);
 		add(lblNewLabel);
@@ -27,8 +27,8 @@ public class MercadoTipo extends JPanel {
 		comboBox = new JComboBox<Tipo>();
 		comboBox.setModel(new DefaultComboBoxModel<Tipo>());
 		comboBox.setBounds(133, 86, 248, 20);
-		for (int i = 0; i < tipoSoldadosInfo.size(); i++) {
-			comboBox.addItem(tipoSoldadosInfo.get(i));
+		for (int i = 0; i < tipos.size(); i++) {
+			comboBox.addItem(tipos.get(i));
 		}
 		
 		add(comboBox);

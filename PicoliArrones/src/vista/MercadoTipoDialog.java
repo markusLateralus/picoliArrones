@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import modelo.Batallon;
 import modelo.Tipo;
+import pruebasui.MercadoSoldadosPrueba;
 import vistaInfo.MercadoSoldadosInfo;
 
 
@@ -23,10 +24,12 @@ public class MercadoTipoDialog extends JDialog {
 	private MercadoTipo mercadoTipo;
 MercadoSoldados mercadoSoldados;
 MercadoSoldadoDialog mercadoSoldadoDialog;
+
 	/**
 	 * Create the dialog.
 	 */
-	public MercadoTipoDialog(ArrayList<Tipo> lista) {
+	public MercadoTipoDialog(ArrayList<Tipo> lista ) {
+
 		setBounds(100, 100, 450, 300);
 	
 		mercadoTipo=new MercadoTipo(lista);
@@ -48,12 +51,12 @@ MercadoSoldadoDialog mercadoSoldadoDialog;
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						Tipo tipo=(Tipo) mercadoTipo.getComboBox().getSelectedItem();
-						//MercadoSoldadosInfo info=new MercadoSoldadosInfo(new Batallon(1,(Tipo)tipo,10));
 						mercadoSoldados=new MercadoSoldados(tipo);
 						dispose();
+					
 						mercadoSoldadoDialog=new MercadoSoldadoDialog();
 						mercadoSoldadoDialog.setVisible(true);
-						//mercadoSoldados.setVisible(true);
+				
 					}
 				});
 				okButton.setActionCommand("OK");
