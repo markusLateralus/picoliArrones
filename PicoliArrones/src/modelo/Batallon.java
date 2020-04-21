@@ -48,6 +48,30 @@ public class Batallon {
 	public int getMaximoSoldados() {
 		return maximoSoldados;
 	}
+
+
+	public Integer getCantidadSoldados() {
+		// TODO Auto-generated method stub
+		return soldados.size();
+	}
+
+
+	public boolean alistarSoldado(Soldado soldado) {
+
+		//programacion por contrato
+		//
+		assert soldado.getEspecialidad().getTipo().equals(tipo):"especialidad no compatible";
+		return	soldados.add(soldado);
+		//programacion defensiva
+//		boolean comprueba=false;
+//		if(soldado.getEspecialidad().getTipo().equals(tipo)) {
+//			
+//			return	soldados.add(soldado);
+//		}
+//		
+//		
+//	return comprueba;
+	}
 	
 	
 	

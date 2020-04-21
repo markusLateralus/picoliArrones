@@ -18,13 +18,7 @@ public class EspecialidadSoldado extends JPanel{
 	private JTextField txtCantidad;
 	private FocusAdapter focusAdapter;
 
-	public JLabel getLblEspecialidad() {
-		return lblEspecialidad;
-	}
 
-	public JTextField getTxtCantidad() {
-		return txtCantidad;
-	}
 
 	/**
 	 * Create the panel.
@@ -55,6 +49,13 @@ public class EspecialidadSoldado extends JPanel{
 		add(txtCantidad);
 		txtCantidad.setColumns(10);
 
+	}
+	public JLabel getLblEspecialidad() {
+		return lblEspecialidad;
+	}
+
+	public JTextField getTxtCantidad() {
+		return txtCantidad;
 	}
 
 }

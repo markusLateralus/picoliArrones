@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.Arrays;
+
 public enum Especialidad {
 
 	ESPADA(Tipo.INFANTERIA),
@@ -17,6 +19,15 @@ public enum Especialidad {
 	
 	public Tipo getTipo() {
 		return tipo;
+	}
+
+	public static Especialidad getTipoPorNombre(String especialidad) {
+		for (Especialidad elemento : Arrays.asList(Especialidad.values())) {
+			if(elemento.toString().equals(especialidad)) {
+				return elemento;
+			}
+		};
+		return null;
 	}
 	
 }

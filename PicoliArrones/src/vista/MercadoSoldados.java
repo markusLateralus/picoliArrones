@@ -10,9 +10,10 @@ import javax.swing.JPanel;
 
 import modelo.Batallon;
 import modelo.Tipo;
+import pruebasui.MercadoSoldadosPrueba;
 import vistaConversores.Generador;
 import vistaInfo.EspecificacionSoldadosInfo;
-import vistaInfo.MercadoSoldadosInfo;
+
 
 
 
@@ -26,6 +27,7 @@ public class MercadoSoldados extends JPanel {
 	private JLabel lblTotal;
 	private MercadoTipo mercadoTipo;
 	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
+	//private LinkedList<Ejercito>ejercitos=new LinkedList<Ejercito>();
 	
 	public LinkedList<Batallon> getBatallones() {
 		return batallones;
@@ -45,22 +47,23 @@ public class MercadoSoldados extends JPanel {
 	
 	/**
 	 * Create the panel.
+	 * tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
 	 */
-	public MercadoSoldados( Tipo tipos) {
+		
+		//Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
+	public MercadoSoldados(int id, Tipo tipo) {
 		
 		setLayout(null);
-		int valorBatallon=1;
-		Batallon batallon=new Batallon(valorBatallon, tipos);
+		 
+		Batallon batallon=new Batallon(id, tipo);
 		
-		especialidades = Generador.getEspecialidadesEnsayo(tipos,miFocusAdapter);
-
-		valorBatallon++;
+		especialidades = Generador.getEspecialidades(tipo,miFocusAdapter);
 		JLabel lblBatallonNumero = new JLabel("Batallon numero ");
 		int height2 = 16;
 		lblBatallonNumero.setBounds(62, 51, 165, height2);
 		add(lblBatallonNumero);
 
-		lblBatallonId = new JLabel(String.valueOf(batallon.getId()));
+		lblBatallonId = new JLabel(String.valueOf(id));
 		lblBatallonId.setBounds(256, 51, 56, height2);
 		add(lblBatallonId);
 
@@ -76,8 +79,8 @@ public class MercadoSoldados extends JPanel {
 		lblTipo.setBounds(62, 135, 56, height2);
 		add(lblTipo);
 		
-		String tipo=MercadoTipo.comboBox.getSelectedItem().toString();
-		lblTipoSoldado = new JLabel(tipo);
+		String tipoString=MercadoTipo.comboBox.getSelectedItem().toString();
+		lblTipoSoldado = new JLabel(tipoString);
 		lblTipoSoldado.setBounds(171, 135, 106, height2);
 		add(lblTipoSoldado);
 		int y = 223;
@@ -130,5 +133,8 @@ public class MercadoSoldados extends JPanel {
 			Integer.valueOf(especialidad.getTxtCantidad().getText().toString())));
 		}
 		return response;
+	}
+	public boolean compruebaMax() {
+		return sumaSoldados()==Integer.parseInt(lblMaxSoldados.getText());
 	}
 }

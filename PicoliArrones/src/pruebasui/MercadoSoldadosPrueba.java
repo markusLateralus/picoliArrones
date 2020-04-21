@@ -5,19 +5,18 @@ import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
 
 import modelo.Batallon;
 import modelo.Tipo;
-import vista.MercadoSoldadoDialog;
-import vista.MercadoTipo;
 import vista.MercadoTipoDialog;
-import vistaInfo.MercadoSoldadosInfo;
+import vistaConversores.Generador;
+
 import javax.swing.JTextArea;
 
 
@@ -27,9 +26,10 @@ public class MercadoSoldadosPrueba extends JFrame {
 	//MercadoSoldadoDialog mercadoSoldadoPruebaDialog;
 	MercadoTipoDialog mercadoTipoDialog;
 	private JTextArea textAreaInformativo;
-	
+	private ArrayList <Tipo>tipos;
+	public static MercadoSoldadosPrueba mercadoSoldadosPrueba = null;
 
- 
+
 	/**
 	 * Launch the application.
 	 */
@@ -45,8 +45,6 @@ public class MercadoSoldadosPrueba extends JFrame {
 			}
 		});
 	}
-	public static MercadoSoldadosPrueba mercadoSoldadosPrueba = null;
-
 
 
 	public static MercadoSoldadosPrueba getMercadoSoldadosPrueba() {
@@ -65,11 +63,13 @@ public class MercadoSoldadosPrueba extends JFrame {
 		JButton btnDialogo = new JButton("crear Batallon");
 		btnDialogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList <Tipo>listaTipos=new ArrayList <Tipo>();
-				listaTipos.add(Tipo.ARQUERIA);
-				listaTipos.add(Tipo.CABALLERIA);
-				listaTipos.add(Tipo.INFANTERIA);
-				mercadoTipoDialog=new MercadoTipoDialog(listaTipos);
+	//		tipos=new ArrayList<Tipo>(Arrays.asList(Tipo.values()));
+//			tipos=new ArrayList <Tipo>();
+//				tipos.add(Tipo.ARQUERIA);
+//				tipos.add(Tipo.CABALLERIA);
+//				tipos.add(Tipo.INFANTERIA);
+			tipos=Generador.getTipos();
+				mercadoTipoDialog=new MercadoTipoDialog(tipos);
 				mercadoTipoDialog.setVisible(true);
 			}
 		});
@@ -77,11 +77,16 @@ public class MercadoSoldadosPrueba extends JFrame {
 		
 		textAreaInformativo = new JTextArea();
 		getContentPane().add(textAreaInformativo, BorderLayout.CENTER);
+		
 	}
 
 	
 	
+	
 
+public ArrayList <Tipo> getTipos(){
+	return tipos;
+}
 
 
 	public JTextArea getTextAreaInformativo() {
