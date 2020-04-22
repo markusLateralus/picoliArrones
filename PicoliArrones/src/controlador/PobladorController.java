@@ -1,8 +1,10 @@
 package controlador;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import modelo.Batallon;
+import modelo.Ejercito;
 import modelo.Soldado;
 import vistaInfo.EspecificacionSoldadosInfo;
 
@@ -10,6 +12,14 @@ public class PobladorController {
 
 	
 	private Batallon batallon;
+	private Ejercito ejercito;
+	
+	public PobladorController(Batallon batallon, Ejercito ejercito) {
+		// TODO Auto-generated constructor stub
+		this.batallon=batallon;
+		this.ejercito= ejercito;
+
+	}
 	
 	public void poblarBatallon(List <EspecificacionSoldadosInfo> especificacion) {
 		assert especificacion!=null;
@@ -25,9 +35,11 @@ public class PobladorController {
 		return batallon;
 	}
 
-	public void setBatallon(Batallon batallon) {
-		this.batallon = batallon;
-	}
+public LinkedList <Batallon> agregarAlEjercito(Batallon batallon){
 	
+	ejercito.getGrupo().add(batallon);
+	return ejercito.getGrupo();
+	
+}
 	
 }

@@ -7,18 +7,19 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import modelo.Batallon;
+import modelo.Ejercito;
 import modelo.Especialidad;
 import modelo.Tipo;
 import vistaInfo.EspecificacionSoldadosInfo;
 
 class PobladorControllerTest {
-
+	
 	@Test
-	void testPoblarBatallon() {
-		PobladorController po=new PobladorController();
+void testPoblarBatallon() {
 		Batallon batallon=new Batallon(1,Tipo.ARQUERIA);
-		
-		po.setBatallon(batallon);
+		Ejercito ejercito=new Ejercito(0);
+		PobladorController po=new PobladorController(batallon,ejercito);
+	
 		Especialidad especialidades[]= {Especialidad.ARCO,Especialidad.BALLESTA};
 		int mitad=5;
 		ArrayList<EspecificacionSoldadosInfo>lista=new ArrayList<EspecificacionSoldadosInfo>();
@@ -34,10 +35,11 @@ class PobladorControllerTest {
 	@Test
 	void testPoblarBatallonDos() {
 		//voy a meter en una lista soldados de diferentes tipos para probar que me da error
-		PobladorController po=new PobladorController();
-		Batallon batallon=new Batallon(1,Tipo.ARQUERIA);
 		
-		po.setBatallon(batallon);
+		Batallon batallon=new Batallon(1,Tipo.ARQUERIA);
+		Ejercito ejercito=new Ejercito(0);
+		PobladorController po=new PobladorController(batallon,ejercito);
+
 		Especialidad especialidades[]= {Especialidad.ARCO,Especialidad.BALLESTA};
 		int fraccion=4;
 		ArrayList<EspecificacionSoldadosInfo>lista=new ArrayList<EspecificacionSoldadosInfo>();
@@ -48,6 +50,6 @@ class PobladorControllerTest {
 		lista.add(new EspecificacionSoldadosInfo(Especialidad.ESPADA.toString(), max-fraccion*2));
 		po.poblarBatallon(lista);
 		assertEquals(max, po.getBatallon().getCantidadSoldados());
-	}
+	}	
 
 }

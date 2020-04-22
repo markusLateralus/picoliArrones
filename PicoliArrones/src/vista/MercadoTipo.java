@@ -15,10 +15,11 @@ import javax.swing.JTextField;
 
 
 public class MercadoTipo extends JPanel {
-	public static JComboBox <Tipo>comboBox;
+	private JComboBox <Tipo>comboBox;
 	private ArrayList<Tipo> tipos;
 	private JTextField textFieldId;
-	 MercadoSoldadosPrueba mercadoSoldadosPrueba=MercadoSoldadosPrueba.getMercadoSoldadosPrueba();
+	private Tipo tipo;
+	// MercadoSoldadosPrueba mercadoSoldadosPrueba=MercadoSoldadosPrueba.getMercadoSoldadosPrueba();
 
 	/**
 	 * Create the panel.
@@ -29,7 +30,7 @@ public class MercadoTipo extends JPanel {
 		JLabel lblNewLabel = new JLabel("elegir Tipo:");
 		lblNewLabel.setBounds(34, 89, 69, 14);
 		add(lblNewLabel);
-		 tipos=mercadoSoldadosPrueba.getTipos();
+		// tipos=Generador.getTipos();
 		comboBox = new JComboBox<Tipo>();
 		comboBox.setModel(new DefaultComboBoxModel<Tipo>());
 		comboBox.setBounds(133, 86, 248, 20);
@@ -50,7 +51,7 @@ public class MercadoTipo extends JPanel {
 
 	}
 
-	public JComboBox getComboBox() {
+	public JComboBox<Tipo> getComboBox() {
 		return comboBox;
 	}
 
@@ -61,5 +62,8 @@ public class MercadoTipo extends JPanel {
 	public JTextField getTextFieldId() {
 		return textFieldId;
 	}
-	
+	public Tipo getTipo() {
+		 tipo=(Tipo)getComboBox().getSelectedItem();
+		return tipo;
+	}
 }

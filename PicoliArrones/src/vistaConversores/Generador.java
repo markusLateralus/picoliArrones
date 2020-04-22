@@ -3,12 +3,15 @@ package vistaConversores;
 import java.awt.event.FocusAdapter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import modelo.Batallon;
+import modelo.Ejercito;
 import modelo.Especialidad;
 import modelo.Tipo;
 import vista.EspecialidadSoldado;
 import vista.MercadoTipoDialog;
+import vistaInfo.EjercitoInfo;
 import vistaInfo.EspecialidadSoldadoInfo;
 import vistaInfo.MercadoSoldadosInfo;
 
@@ -31,11 +34,19 @@ public class Generador {
 	public static ArrayList<Tipo> getTipos(){
 		ArrayList<Tipo>tipos=new ArrayList<Tipo>();
 		tipos.addAll(Arrays.asList(Tipo.values()));
-			return tipos;
+		return tipos ;
+	
+		
 			
 	}
 	
 	public static MercadoSoldadosInfo getMercadoSoldadoInfo(Batallon batallon) {
 		return new MercadoSoldadosInfo(batallon);
+	}
+	
+	
+	public static EjercitoInfo getEjercitoInfo(Ejercito ejercito) {
+		return new EjercitoInfo(ejercito.getId(), ejercito.getIdBatallonActual(), ejercito.getTipoBatallon(),
+				Ejercito.getInfanteria(), Ejercito.getCaballleria(), Ejercito.getArqueria());
 	}
 }

@@ -9,8 +9,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelo.Batallon;
-import modelo.Tipo;
-import pruebasui.MercadoSoldadosPrueba;
 import vistaConversores.Generador;
 import vistaInfo.EspecificacionSoldadosInfo;
 
@@ -25,9 +23,10 @@ public class MercadoSoldados extends JPanel {
 	private ArrayList<EspecialidadSoldado> especialidades;
 	private JLabel lblTipoSoldado;
 	private JLabel lblTotal;
-	private MercadoTipo mercadoTipo;
+
+	private Batallon batallon;
 	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
-	//private LinkedList<Ejercito>ejercitos=new LinkedList<Ejercito>();
+	//private 	LinkedList<EspecificacionSoldadosInfo> especificacionesSoldadosInfo;
 	
 	public LinkedList<Batallon> getBatallones() {
 		return batallones;
@@ -35,6 +34,10 @@ public class MercadoSoldados extends JPanel {
 
 	public void setBatallones(LinkedList<Batallon> batallones) {
 		this.batallones = batallones;
+	}
+
+	public Batallon getBatallon() {
+		return batallon;
 	}
 
 	private FocusAdapter miFocusAdapter=new FocusAdapter() {
@@ -51,19 +54,19 @@ public class MercadoSoldados extends JPanel {
 	 */
 		
 		//Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
-	public MercadoSoldados(int id, Tipo tipo) {
+	public MercadoSoldados(Batallon batallon) {
 		
 		setLayout(null);
-		 
-		Batallon batallon=new Batallon(id, tipo);
+		 this.batallon=batallon;
+		//Batallon batallon=new Batallon(id, tipo);
 		
-		especialidades = Generador.getEspecialidades(tipo,miFocusAdapter);
+		especialidades = Generador.getEspecialidades(batallon.getTipo(),miFocusAdapter);
 		JLabel lblBatallonNumero = new JLabel("Batallon numero ");
 		int height2 = 16;
 		lblBatallonNumero.setBounds(62, 51, 165, height2);
 		add(lblBatallonNumero);
 
-		lblBatallonId = new JLabel(String.valueOf(id));
+		lblBatallonId = new JLabel(String.valueOf(batallon.getId()));
 		lblBatallonId.setBounds(256, 51, 56, height2);
 		add(lblBatallonId);
 
@@ -79,7 +82,7 @@ public class MercadoSoldados extends JPanel {
 		lblTipo.setBounds(62, 135, 56, height2);
 		add(lblTipo);
 		
-		String tipoString=MercadoTipo.comboBox.getSelectedItem().toString();
+		String tipoString=batallon.getTipo().toString();
 		lblTipoSoldado = new JLabel(tipoString);
 		lblTipoSoldado.setBounds(171, 135, 106, height2);
 		add(lblTipoSoldado);
@@ -92,26 +95,33 @@ public class MercadoSoldados extends JPanel {
 		JLabel lblTotalf = new JLabel("Total");
 		lblTotalf.setBounds(62, 390, 56, height2);
 		add(lblTotalf);
-		if(sumaSoldados()<10 || sumaSoldados()>10) {
-			lblTotal = new JLabel("no cumples con la cantidad exigida");
-		}else {
+	
 			lblTotal = new JLabel(String.valueOf(sumaSoldados()));
-		}
+		
 
-		lblTotal.setBounds(245, 390, 56, height2);
+		lblTotal.setBounds(245, 390, 156, height2);
 		add(lblTotal);
 		batallones.add(batallon);
 	}
-
-	private int sumaSoldados() {
+	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
+		LinkedList<EspecificacionSoldadosInfo> response=new LinkedList<EspecificacionSoldadosInfo>();
+		for (EspecialidadSoldado especialidad : especialidades) {
+			response.add(new EspecificacionSoldadosInfo(especialidad.getLblEspecialidad().getText().toString(),
+			Integer.valueOf(especialidad.getTxtCantidad().getText().toString())));
+		}
+		return response;
+	}
+	public  int sumaSoldados() {
 		int total = 0;
 		for (EspecialidadSoldado especialidadSoldadosEnsayo : especialidades) {
 			String text = especialidadSoldadosEnsayo.getTxtCantidad().getText();
 			int cantidad = Integer.valueOf(text);
 			total += cantidad;
 		}
-
 		return total;
+	}
+	public JLabel getLblTotal() {
+		return lblTotal;
 	}
 
 	public JLabel getLblBatallonId() {
@@ -126,14 +136,7 @@ public class MercadoSoldados extends JPanel {
 		return lblTipoSoldado;
 	}
 
-	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
-		LinkedList<EspecificacionSoldadosInfo> response=new LinkedList<EspecificacionSoldadosInfo>();
-		for (EspecialidadSoldado especialidad : especialidades) {
-			response.add(new EspecificacionSoldadosInfo(especialidad.getLblEspecialidad().getText().toString(),
-			Integer.valueOf(especialidad.getTxtCantidad().getText().toString())));
-		}
-		return response;
-	}
+
 	public boolean compruebaMax() {
 		return sumaSoldados()==Integer.parseInt(lblMaxSoldados.getText());
 	}

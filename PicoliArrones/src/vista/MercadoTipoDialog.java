@@ -18,18 +18,16 @@ public class MercadoTipoDialog extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JButton okButton;
-	private MercadoTipo mercadoTipo;
-	MercadoSoldados mercadoSoldados;
-	MercadoSoldadoDialog mercadoSoldadoDialog;
+
 
 	/**
 	 * Create the dialog.
 	 */
-	public MercadoTipoDialog(ArrayList<Tipo> lista ) {
+	public MercadoTipoDialog(MercadoTipo mercadoTipo) {
 
 		setBounds(100, 100, 450, 300);
 
-		mercadoTipo = new MercadoTipo(lista);
+	//	mercadoTipo = new MercadoTipo(mercadoTipo);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -42,21 +40,7 @@ public class MercadoTipoDialog extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				okButton = new JButton("OK");
-				okButton.addActionListener(new ActionListener() {
-
-					@Override
-					public void actionPerformed(ActionEvent e) {
-						// TODO Auto-generated method stub
-						Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
-						int id=Integer.parseInt(getTextFieldId().getText());
-						mercadoSoldados = new MercadoSoldados(id,tipo);
-						dispose();
-
-						mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoTipo);
-						mercadoSoldadoDialog.setVisible(true);
-
-					}
-				});
+			
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);
@@ -73,8 +57,11 @@ public class MercadoTipoDialog extends JDialog {
 //		return mercadoTipo.getComboBox();
 //	}
 
-	public JTextField getTextFieldId() {
-		return mercadoTipo.getTextFieldId();
+
+
+	public JButton getOkButton() {
+		return okButton;
 	}
 
+	
 }
