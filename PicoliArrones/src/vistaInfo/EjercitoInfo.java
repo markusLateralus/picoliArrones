@@ -24,6 +24,34 @@ public class EjercitoInfo {
 		this.arqueria = arqueria;
 	}
 
+	public EjercitoInfo() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public void setEjercitoID(int ejercitoID) {
+		this.ejercitoID = ejercitoID;
+	}
+
+	public void setIdBattallonActual(int idBattallonActual) {
+		this.idBattallonActual = idBattallonActual;
+	}
+
+	public void setTipoActual(Tipo tipoActual) {
+		this.tipoActual = tipoActual;
+	}
+
+	public void setInfanteria(int infanteria) {
+		this.infanteria = infanteria;
+	}
+
+	public void setCaballeria(int caballeria) {
+		this.caballeria = caballeria;
+	}
+
+	public void setArqueria(int arqueria) {
+		this.arqueria = arqueria;
+	}
+
 	public int getArmyID() {
 		return ejercitoID;
 	}

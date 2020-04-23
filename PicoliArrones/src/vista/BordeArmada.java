@@ -9,7 +9,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import controlador.PobladorController;
 import net.miginfocom.swing.MigLayout;
+import vistaConversores.Generador;
 import vistaInfo.EjercitoInfo;
 
 
@@ -23,12 +25,25 @@ public class BordeArmada extends JPanel {
 	private JLabel lblArmy;
 	private JLabel lblCurrentBattalionId;
 	private EjercitoInfo ejercitoInfo;
+	PobladorController pobladorController;
+
+	public EjercitoInfo getEjercitoInfo() {
+		return ejercitoInfo;
+	}
 
 	/**
 	 * Create the panel.
 	 */
-	public BordeArmada(EjercitoInfo ejercitoInfo) {
-		this.ejercitoInfo=ejercitoInfo;
+	public BordeArmada(PobladorController pobladorController) {
+//		this.pobladorController=pobladorController;
+//		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
+		
+		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
+	}
+	public BordeArmada() {
+//		this.pobladorController=pobladorController;
+//		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
+		
 		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
 	}
 

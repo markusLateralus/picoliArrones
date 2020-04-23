@@ -17,6 +17,7 @@ public class EspecialidadSoldado extends JPanel{
 	private JLabel lblEspecialidad;
 	private JTextField txtCantidad;
 	private FocusAdapter focusAdapter;
+	private EspecialidadSoldadoInfo especialidadSoldadoInfo;
 
 
 
@@ -24,16 +25,17 @@ public class EspecialidadSoldado extends JPanel{
 	 * Create the panel.
 	 */
 	public EspecialidadSoldado(EspecialidadSoldadoInfo especialidad,FocusAdapter focusAdapter) {
+		this.especialidadSoldadoInfo=especialidad;
 		this.focusAdapter=focusAdapter;
 		setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 		
-		JLabel lblNewLabel = new JLabel("Especialidad     :");
+		JLabel lblNewLabel = new JLabel("Especialidad     : ");
 		add(lblNewLabel);
 		
 		lblEspecialidad = new JLabel(String.valueOf(especialidad.getEspecialidad()));
 		add(lblEspecialidad);
 		
-		JLabel lblCantidadc = new JLabel("               Cantidad         :");
+		JLabel lblCantidadc = new JLabel("               Cantidad         : ");
 		add(lblCantidadc);
 		
 		txtCantidad = new JTextField("0");
@@ -49,6 +51,9 @@ public class EspecialidadSoldado extends JPanel{
 		add(txtCantidad);
 		txtCantidad.setColumns(10);
 
+	}
+	public EspecialidadSoldadoInfo getEspecialidadSoldadoInfo() {
+		return especialidadSoldadoInfo;
 	}
 	public JLabel getLblEspecialidad() {
 		return lblEspecialidad;

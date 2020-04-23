@@ -13,11 +13,15 @@ public class PobladorController {
 	
 	private Batallon batallon;
 	private Ejercito ejercito;
+	private Soldado soldado;
+	
+	
 	
 	public PobladorController(Batallon batallon, Ejercito ejercito) {
 		// TODO Auto-generated constructor stub
 		this.batallon=batallon;
 		this.ejercito= ejercito;
+
 
 	}
 	
@@ -35,11 +39,21 @@ public class PobladorController {
 		return batallon;
 	}
 
-public LinkedList <Batallon> agregarAlEjercito(Batallon batallon){
+public void agregarAlEjercito(Batallon batallon){
 	
 	ejercito.getGrupo().add(batallon);
-	return ejercito.getGrupo();
 	
 }
+public LinkedList <Batallon> getBatallones(){
+	return ejercito.getGrupo();
+}
+public void setEjercito(Ejercito ejercito) {
+	this.ejercito=ejercito;
+}
+public Ejercito getEjercito() {
+	return ejercito;
+}
+
+
 	
 }

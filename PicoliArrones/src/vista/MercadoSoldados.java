@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelo.Batallon;
+import modelo.Especialidad;
+import modelo.Soldado;
 import vistaConversores.Generador;
 import vistaInfo.EspecificacionSoldadosInfo;
 
@@ -23,23 +25,11 @@ public class MercadoSoldados extends JPanel {
 	private ArrayList<EspecialidadSoldado> especialidades;
 	private JLabel lblTipoSoldado;
 	private JLabel lblTotal;
-
 	private Batallon batallon;
-	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
-	//private 	LinkedList<EspecificacionSoldadosInfo> especificacionesSoldadosInfo;
+	//aki empieza el la lista de batallones a agregar un nuevo batallon
+	//private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
+	LinkedList<Soldado>soldados;
 	
-	public LinkedList<Batallon> getBatallones() {
-		return batallones;
-	}
-
-	public void setBatallones(LinkedList<Batallon> batallones) {
-		this.batallones = batallones;
-	}
-
-	public Batallon getBatallon() {
-		return batallon;
-	}
-
 	private FocusAdapter miFocusAdapter=new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
@@ -57,10 +47,10 @@ public class MercadoSoldados extends JPanel {
 	public MercadoSoldados(Batallon batallon) {
 		
 		setLayout(null);
-		 this.batallon=batallon;
-		//Batallon batallon=new Batallon(id, tipo);
-		
+		 this.batallon=batallon;	
 		especialidades = Generador.getEspecialidades(batallon.getTipo(),miFocusAdapter);
+		
+	
 		JLabel lblBatallonNumero = new JLabel("Batallon numero ");
 		int height2 = 16;
 		lblBatallonNumero.setBounds(62, 51, 165, height2);
@@ -101,7 +91,7 @@ public class MercadoSoldados extends JPanel {
 
 		lblTotal.setBounds(245, 390, 156, height2);
 		add(lblTotal);
-		batallones.add(batallon);
+
 	}
 	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
 		LinkedList<EspecificacionSoldadosInfo> response=new LinkedList<EspecificacionSoldadosInfo>();
@@ -140,4 +130,16 @@ public class MercadoSoldados extends JPanel {
 	public boolean compruebaMax() {
 		return sumaSoldados()==Integer.parseInt(lblMaxSoldados.getText());
 	}
+//	public LinkedList<Batallon> getBatallones() {
+//		return batallones;
+//	}
+//
+//	public void setBatallones(LinkedList<Batallon> batallones) {
+//		this.batallones = batallones;
+//	}
+
+	public Batallon getBatallon() {
+		return batallon;
+	}
+
 }

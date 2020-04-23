@@ -10,16 +10,23 @@ public class Ejercito implements Casilla{
 	private static int arqueria=1;
 	private int idBatallonActual=0;
 	LinkedList<Batallon>grupo=new LinkedList<Batallon>();
-
+	Batallon batallon;
 	
 	public Ejercito(int id) {
 		// TODO Auto-generated constructor stub
 		this.id=id;
-		//crearEjercito();
+		crearEjercito();
+	}
+	public Ejercito(int id, Batallon batallon) {
+		// TODO Auto-generated constructor stub
+		this.id=id;
+		crearEjercito2(batallon);
 	}
 	
 		
-	
+	private void crearEjercito2(Batallon batallon) {
+		grupo.add(batallon);
+	}
 	private void crearEjercito() {
 		// TODO Auto-generated method stub
 			int j=0;
@@ -34,7 +41,18 @@ public class Ejercito implements Casilla{
 			}
 	}
 
-
+public Batallon getBatallon(Tipo tipo) {
+	Batallon batallon;
+	if(grupo.size()!=0) {
+	for (int i = 0; i < grupo.size(); i++) {
+		if(tipo.equals(grupo.get(i).getTipo())) {
+			 batallon=grupo.get(i);
+			 return batallon;
+		}
+	}
+	}
+	return null;
+}
 
 
 

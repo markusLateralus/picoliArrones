@@ -17,6 +17,8 @@ import javax.swing.border.EmptyBorder;
 import controlador.PobladorController;
 import modelo.Batallon;
 import modelo.Ejercito;
+import modelo.Especialidad;
+import modelo.Soldado;
 import modelo.Tipo;
 import vista.BordeArmada;
 import vista.EspecialidadSoldado;
@@ -42,6 +44,8 @@ public class BodeArmadaPrueba extends JFrame {
 private Batallon batallon;
 EjercitoInfo ejercitoInfo;
 BordeArmada bordeArmada;
+LinkedList <Ejercito> ejercitos=new LinkedList<Ejercito>();
+private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	/**
 	 * Launch the application.
 	 */
@@ -68,11 +72,12 @@ BordeArmada bordeArmada;
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-			ejercito = new Ejercito(5);
-	     bordeArmada = new BordeArmada(Generador.getEjercitoInfo(ejercito));
-		contentPane.add(bordeArmada, BorderLayout.WEST);
-		
-		bordeArmada.cargarEjercito(Generador.getEjercitoInfo(ejercito));
+
+		ejercito = new Ejercito(5);
+		ejercitos.add(ejercito);
+	     bordeArmada = new BordeArmada();
+		contentPane.add(bordeArmada, BorderLayout.WEST);	
+		bordeArmada.cargarEjercito(Generador.getNuevoEjercitoInfo(ejercito));
 		getBtnPoblar().addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 mercadoTipo=new MercadoTipo(Generador.getTipos());
@@ -85,29 +90,54 @@ BordeArmada bordeArmada;
 								//	Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
 									Tipo tipo=getTipo();
 									int id=getId();
-									batallon=new Batallon(id, tipo);
+									//batallon=new Batallon(id, tipo);
+							batallon=ejercito.getBatallon(tipo);
+							batallon.setId(id);
+									pobladorController=new PobladorController(batallon, ejercito);
 									//mercadoSoldados = new MercadoSoldados(id,tipo,batallon);
 									mercadoTipoDialog.dispose();
 									mercadoSoldados=new MercadoSoldados(batallon);
 									mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
-									mercadoSoldadoDialog.setVisible(true);									
+									mercadoSoldadoDialog.setVisible(true);	
+									pobladorController.poblarBatallon(getListaEjercito());
+//									ArrayList<Especialidad> tiposDeEspecialidades=Generador.getEspecialidad(batallon.getTipo());
+//									
+//									for (int i=0; i<tiposDeEspecialidades.size(); i++) {
+//										batallon.alistarSoldado(new Soldado(tiposDeEspecialidades.get(i)));
+//									}
+									//batallones.add(batallon);
 									mercadoSoldadoDialog.getOkButton().addActionListener(new ActionListener() {
 										
 										@Override
 										public void actionPerformed(ActionEvent e) {
 											// TODO Auto-generated method stub					
 											if (mercadoSoldadoDialog.compruebaMax()) {													
-											
-												 //bordeArmada = new BordeArmada(Generador.getEjercitoInfo(ejercito));
-												bordeArmada.update(Generador.getEjercitoInfo(ejercito));
-												bordeArmada.cargarEjercito(Generador.getEjercitoInfo(ejercito));
-												pobladorController=new PobladorController(batallon, ejercito);
-												pobladorController.poblarBatallon(mercadoSoldados.getListaEjercito());
-												pobladorController.agregarAlEjercito(batallon);
-												
+						
+											 pobladorController.poblarBatallon(getListaEjercito());
+											//	pobladorController.agregarAlEjercito(batallon);
+												//  bordeArmada.update(Generador.getEjercitoInfo(ejercito));
 										
-										}
+											for (int i=0; i<pobladorController.getBatallones().size(); i++) {					
 											
+													System.out.println("cantidad " + pobladorController.getBatallones().get(i).getCantidadSoldados() +
+															" tipo " +  pobladorController.getBatallones().get(i).getTipo());
+
+														/*
+														 * -------------------------
+															cantidad 4 tipo INFANTERIA
+															cantidad 2 tipo CABALLERIA
+															cantidad 2 tipo ARQUERIA
+															-------------------------
+														 * 
+														 * */
+												}
+											
+											System.out.println("-------------------------");
+											
+
+										}
+											bordeArmada.update(Generador.getEjercitoInfo(ejercito));
+											System.out.println(ejercito.getTipoBatallon());
 											mercadoSoldadoDialog.dispose();
 								
 										
@@ -141,6 +171,16 @@ BordeArmada bordeArmada;
 	
 		
 	}
+	
+	
+	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
+		return mercadoSoldados.getListaEjercito();
+	}
+
+	public EjercitoInfo getEjercitoInfo() {
+		return bordeArmada.getEjercitoInfo();
+	}
+
 	private int getId() {
 		return Integer.parseInt(getTextFieldId().getText());
 		

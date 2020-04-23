@@ -9,7 +9,6 @@ public class Batallon implements Casilla{
 	private final int maximoSoldados=10;
 	private Tipo tipo;
 	private LinkedList<Soldado>soldados=new LinkedList<Soldado>();
-	private Color colorBatallon;
 	
 	public Batallon(int id, Tipo tipo) {
 		super();
@@ -18,15 +17,18 @@ public class Batallon implements Casilla{
 	}
 	
 	
-	public Batallon(int id, Tipo tipo,LinkedList<Soldado>soldados,Color colorBatallon) {
+	public Batallon(int id, Tipo tipo,LinkedList<Soldado>soldados) {
 		this(id,tipo);
-		this.colorBatallon=colorBatallon;
 		
 	}
 	
 	
-	
-	
+	public LinkedList<Soldado> getSoldados(){
+		return soldados;
+	}
+	public LinkedList<Especialidad>getEspecialidad(Soldado soldado){
+		return soldado.getEspecialidades();
+	}
 	
 
 	public int getId() {
