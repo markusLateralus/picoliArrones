@@ -1,9 +1,10 @@
 package modelo;
 
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.LinkedList;
 
-public class Batallon {
+public class Batallon implements Casilla {
 
 	private int id;
 	private final int maximoSoldados=10;
@@ -15,6 +16,8 @@ public class Batallon {
 		super();
 		this.id = id;
 		this.tipo = tipo;
+	
+	
 	}
 	
 	
@@ -24,10 +27,9 @@ public class Batallon {
 		
 	}
 	
-	
-	
-	
-	
+	public LinkedList <Soldado>getSoldados(){
+		return soldados;
+	}
 
 	public int getId() {
 		return id;

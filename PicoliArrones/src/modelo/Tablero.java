@@ -1,14 +1,64 @@
 package modelo;
 
+import java.util.ArrayList;
+
+import modelo.Coordenada;
+
 public class Tablero {
-	private int ancho, alto;
-	//Como tambien puede ser un castillo, habrá que remodelar esto
-	private Matriz<Coordenada, Batallon> casillas;
-	public Tablero(int ancho, int alto) {
+	private Dimension dimension;
+	
+	private Matriz<Coordenada, Casilla> casillas; //BIDIRECCIONAL
+	
+	public Tablero(Dimension dimension) {
 		super();
-		this.ancho = ancho;
-		this.alto = alto;
-		casillas=new Matriz<Coordenada, Batallon>(ancho, alto);
+		this.dimension=dimension;
+		casillas=new Matriz<Coordenada, Casilla>(getAncho(), getAlto());
 		
 	}
-}
+	
+	public int getAncho() {
+		return dimension.getAncho();
+	}
+
+	public int getAlto() {
+		return dimension.getAlto();
+	}
+
+	public Casilla getCasilla(Coordenada coordenada) {
+		return casillas.getElement(coordenada);
+	}
+
+//	private boolean validaCoordenada(Coordenada coordenada) {
+//		return coordenada.getX() >= 0 && coordenada.getY() >= 0 && coordenada.getX() < getAncho()
+//				&& coordenada.getY() < getAlto();
+//	}
+	public void insertar(Batallon batallon,Coordenada coordenada) {
+		
+		casillas.insertElement(coordenada, batallon);
+	}
+	public void insertar(Casilla casilla,Coordenada coordenada) {
+	
+		casillas.insertElement(coordenada, casilla);
+	}
+	
+	
+
+//	public ArrayList<Casilla> getCasillas(ArrayList<Coordenada> coordenadas) {
+//		// TODO Auto-generated method stub
+//		ArrayList <Casilla>casillas=new ArrayList<Casilla>();
+//		for (int i = 0; i < coordenadas.size(); i++) {
+//			Casilla casilla=coordenadas.get(i);
+//			casillas.add((Casilla) coordenadas.get(i));
+//		}
+//		return casillas;
+//	}
+
+	public void insertar(ArrayList<Batallon> batallones, ArrayList<Coordenada> coordenadas) {
+		// TODO Auto-generated method stub
+		for (int i = 0; i < coordenadas.size(); i++) {
+				casillas.insertElement(coordenadas.get(i), batallones.get(i));
+			}
+			
+		}
+	}
+
