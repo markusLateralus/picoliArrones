@@ -32,9 +32,7 @@ public class EjercitoInfo {
 		return tipoActual;
 	}
 
-	public int getCurrentBattalion() {
-		return BattallonActual;
-	}
+
 
 	public int getInfanteria() {
 		return infanteria;
@@ -46,6 +44,11 @@ public class EjercitoInfo {
 
 	public int getArqueria() {
 		return arqueria;
+	}
+
+	public int getIdBatallonActual() {
+		// TODO Auto-generated method stub
+		return BattallonActual;
 	}
 	
 	
