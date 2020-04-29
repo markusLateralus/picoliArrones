@@ -96,17 +96,17 @@ public class MercadoSoldadosPrueba extends JFrame {
 									public void actionPerformed(ActionEvent e) {
 										// TODO Auto-generated method stub
 									//	listaEjercito = mercadoSoldados.getListaEjercito();								
-										if (mercadoSoldadoDialog.compruebaMax()) {
+										//if (mercadoSoldadoDialog.compruebaMax()) {
 									
-											pobladorController=new PobladorController(batallon);
-											pobladorController.poblarBatallon(mercadoSoldados.getListaEjercito());
-											System.out.println(batallon.getTipo());
-											for (EspecificacionSoldadosInfo especificacion : mercadoSoldados.getListaEjercito()) {
-												System.out.println(" especialidad:" + especificacion.getEspecialidad()  + " cantidad " + especificacion.getCantidad());
-												
-											}
-									}
-										mercadoSoldadoDialog.dispose();
+//											pobladorController=new PobladorController(batallon);
+//											pobladorController.poblarBatallon(mercadoSoldados.getListaEjercito());
+//											System.out.println(batallon.getTipo());
+//											for (EspecificacionSoldadosInfo especificacion : mercadoSoldados.getListaEjercito()) {
+//												System.out.println(" especialidad:" + especificacion.getEspecialidad()  + " cantidad " + especificacion.getCantidad());
+//												
+//											}
+//									}
+//										mercadoSoldadoDialog.dispose();
 										
 									}
 							
