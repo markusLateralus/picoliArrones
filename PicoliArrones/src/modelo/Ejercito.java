@@ -13,10 +13,14 @@ public class Ejercito implements Comparable <Ejercito>{
 	private Batallon batallonTipoArqueria;
 	private Batallon batallonTipoInfanteria;
 	private Batallon batallonTipoCaballeria;
+	private static int infanteria = 1;
+	private static int caballeria = 1;
+	private static int arqueria = 1;
+	private int idBatallonActual = 0;
 	public Ejercito(int id) {
 		this.id=id;
 		//this.batallon=batallon;
-	  crearBatallones();
+	  crearEjercito();
 	}
 	public int getId() {
 		return id;
@@ -25,7 +29,7 @@ public class Ejercito implements Comparable <Ejercito>{
 	public void setId(int id) {
 		this.id=id;
 	}
-private Stack<Batallon> crearBatallones() {
+private Stack<Batallon> crearEjercito() {
 	
 	batallonTipoArqueria=new Batallon(1,Tipo.ARQUERIA);
 	batallonTipoArqueria.alistarSoldado(new Soldado(Especialidad.ARCO));
@@ -45,7 +49,18 @@ private Stack<Batallon> crearBatallones() {
 	return batallones;
 	
 }
-
+public boolean setSiguienteBatallon() {
+	boolean respuesta=false;
+	
+	if(++idBatallonActual<batallones.size()) {
+		respuesta=true;
+	}
+	else {
+		idBatallonActual=0;
+	}
+	return respuesta;
+	
+}
 
 public Stack<Batallon>getBatallones(){
 	return batallones;
@@ -70,8 +85,29 @@ public Batallon getBatallonTipoInfanteria() {
 public Batallon getBatallonTipoCaballeria() {
 	return batallonTipoCaballeria;
 }
+public static int getInfanteria() {
+	return infanteria;
+}
 
-	
+public static int getCaballeria() {
+	return caballeria;
+}
+
+public static int getArqueria() {
+	return arqueria;
+}
+
+public int getIdBatallonActual() {
+	return idBatallonActual;
+}
+
+public Tipo getTipoBatallon() {
+	return getBatallonActual().getTipo();
+}
+
+public Batallon getBatallonActual() {
+	return batallones.get(idBatallonActual);
+}
 @Override
 public int hashCode() {
 	final int prime = 31;

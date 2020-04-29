@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Juego;
 import modelo.Coordenada;
+import utiles.Utiles;
+import vistaInfo.FichaInfo;
 import vistaInfo.TableroUIInfo;
 
 public class TableroUI extends JPanel {
@@ -21,36 +23,40 @@ public class TableroUI extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public TableroUI(MouseAdapter mouseAdapter,TableroUIInfo tableroUIInfo, Juego juego) {
+	public TableroUI(int ancho, int alto) {
 		super();
-		this.juego=juego;
-		this.mouseAdapter = mouseAdapter;
-		fichas = new JPanel[tableroUIInfo.getAncho()][tableroUIInfo.getAlto()];
+		//this.mouseAdapter = mouseAdapter;
+		fichas = new JPanel[ancho][alto];
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setLayout(new GridLayout(tableroUIInfo.getAncho(), tableroUIInfo.getAlto(), 0, 0)); //layaout tipo MAYA
-		actualizarTablero(tableroUIInfo);
+		setLayout(new GridLayout(ancho, alto, 0, 0));
+		//actualizarTablero(tableroUIInfo);
 	}
 
 	public void actualizarTablero(TableroUIInfo tableroUIInfo) { //se le añade el MouseListener y se agrega al PANEL
-		removeAll();//borrar todo
-		tableroUIInfo.getFichas(fichas,this.juego);
-		
+		removeAll();
+		FichaInfo [][] fichasInfo=tableroUIInfo.getFichasInfo();
 		for (int i = 0; i < fichas.length; i++) {
 			for (int j = 0; j < fichas[i].length; j++) {
-				JPanel casilla = fichas[i][j];
-				casilla.setName(i + ""+ j);
-				casilla.addMouseListener(mouseAdapter);
-				add(casilla);
+				fichas[i][j] = getFicha(fichasInfo[i][j]);
+				fichas[i][j].setName(Utiles.nombrar(i, j));
+				fichas[i][j].addMouseListener(mouseAdapter);
+				add(fichas[i][j]);
 			}
 		}
-		revalidate();//
+		revalidate();
 	}
 	
 	
-public JPanel[][] getFichas() {
-		return fichas;
+	public  JPanel getFicha(FichaInfo fichaInfo) {
+		if(fichaInfo==null) {
+			return new FichaBlanca();
+		}
+		return new Ficha(fichaInfo);
 	}
-
+public void setMouseAdapter(MouseAdapter mouseAdapter) {
+	this.mouseAdapter=mouseAdapter;
+//	actualizarTablero(tableroUIInfo);
+}
 
 	public  Coordenada obtenCoordenada(String name) {
 		int pos = name.length() / 2;

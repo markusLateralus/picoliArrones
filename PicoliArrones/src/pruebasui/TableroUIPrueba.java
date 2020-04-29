@@ -41,7 +41,7 @@ public class TableroUIPrueba extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TableroUIPrueba frame = new TableroUIPrueba();
+					ParaUIPruebaTablero frame = new ParaUIPruebaTablero();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -60,48 +60,32 @@ public class TableroUIPrueba extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
-		setContentPane(contentPane);
-		MouseAdapter mouseAdapter = new MouseAdapter() {
-		
 
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
-				JPanel panel = (JPanel) e.getSource();
-				//panel.setBackground(Color.YELLOW);
-				coordenada=tableroUI.obtenCoordenada(panel.getName());
-				System.out.println(coordenada.getX() + " "+ coordenada.getY());
-				
-				if(juego.getEjercito1().getBatallones().size()>0) {
-					colocarEjercito1(coordenada,tableroUI);
-				}
-				else if(juego.getEjercito2().getBatallones().size()>0) {
-					colocarEjercito2(coordenada,tableroUI);
-				}			
-				
-
-			}
-		};
+			
 
 	
 		 juego=new Juego();
 		 tableroUIInfo=new TableroUIInfo(juego.getTablero());
-		tableroUI=new TableroUI(mouseAdapter, tableroUIInfo,juego);
+		
 	
 	  //  juego.colocarBatallon(1,coordenada);
 		contentPane.add(tableroUI, BorderLayout.CENTER);
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	}
-	private void colocarEjercito1(Coordenada coordenada,TableroUI tableroUI) {
-		
-		juego.colocarBatallon( juego.getEjercito1(),coordenada);
-		tableroUIInfo.getFichas(tableroUI.getFichas(),juego);
-		tableroUI.actualizarTablero(tableroUIInfo);
-	}
-	private void colocarEjercito2(Coordenada coordenada,TableroUI tableroUI) {
-		ejercito=juego.getEjercito2();
-		juego.colocarBatallon( juego.getEjercito2(),coordenada);
-		tableroUIInfo.getFichas(tableroUI.getFichas(),juego);
-		tableroUI.actualizarTablero(tableroUIInfo);
+//	private void colocarEjercito1(Coordenada coordenada,TableroUI tableroUI) {
+//		
+//		juego.colocarBatallon( juego.getEjercito1(),coordenada);
+//		tableroUIInfo.getFichas(tableroUI.getFichas(),juego);
+//		tableroUI.actualizarTablero(tableroUIInfo);
+//	}
+//	private void colocarEjercito2(Coordenada coordenada,TableroUI tableroUI) {
+//		ejercito=juego.getEjercito2();
+//		juego.colocarBatallon( juego.getEjercito2(),coordenada);
+//		tableroUIInfo.getFichas(tableroUI.getFichas(),juego);
+//		tableroUI.actualizarTablero(tableroUIInfo);
+//	}
+	
+	public TableroUI getTableroUI() {
+		return tableroUI;
 	}
 }

@@ -32,13 +32,14 @@ public class Tablero {
 //		return coordenada.getX() >= 0 && coordenada.getY() >= 0 && coordenada.getX() < getAncho()
 //				&& coordenada.getY() < getAlto();
 //	}
-	public void insertar(Batallon batallon,Coordenada coordenada) {
-		
-		casillas.insertElement(coordenada, batallon);
-	}
-	public void insertar(Casilla casilla,Coordenada coordenada) {
 	
+	public boolean insertar(Casilla casilla,Coordenada coordenada) {
+		boolean response=false;
+		if(!casillas.contieneElemento(casilla) && !casillas.contieneClave(coordenada)) {
 		casillas.insertElement(coordenada, casilla);
+		response=true;
+		}
+		return response;
 	}
 	
 	

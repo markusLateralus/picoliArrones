@@ -8,6 +8,7 @@ import controlador.Juego;
 import modelo.Coordenada;
 import modelo.Tablero;
 import vista.FichaBlanca;
+import vistaInfo.FichaInfo;
 import vistaConversores.Generador;
 
 public class TableroUIInfo {
@@ -30,17 +31,15 @@ public class TableroUIInfo {
 		return alto;
 	}
 	
-
-	public void getFichas(JPanel fichas[][], Juego juego) {
-		// Por que uso un array matriz para este tablero?
-		for (int i = 0; i < fichas.length; i++) {
-			for (int j = 0; j < fichas[i].length; j++) {
-				JPanel fichaInfo = Generador.getFicha(tablero, new Coordenada(i, j),juego);
-				fichas[i][j] = fichaInfo;
-//						fichas[i][j].addMouseListener(mouseAdapter);
-
+	
+	public FichaInfo[][] getFichasInfo(){
+		FichaInfo[][] fichasFichaInfo=new FichaInfo[tablero.getAncho()][tablero.getAlto()];
+		for (int i = 0; i < fichasFichaInfo.length; i++) {
+			for (int j = 0; j < fichasFichaInfo[i].length; j++) {
+				fichasFichaInfo[i][j]=Generador.getFichaInfo(tablero, new Coordenada(i,j));
 			}
 		}
+		return fichasFichaInfo;
 	}
 	
 //	public void colocarEjercito(JPanel fichas[][]) {

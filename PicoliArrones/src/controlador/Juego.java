@@ -21,7 +21,8 @@ public class Juego {
 	Ejercito ejercito1;
 	Ejercito ejercito2;
 	private ArrayList <Ejercito>ejercitos=new ArrayList<Ejercito>();
-	
+	private boolean localizarEstado=true;
+	private int idEjercitoActual=0;
 	public Juego() {
 		super();		
 		 ejercito1=new Ejercito(1 );
@@ -47,6 +48,35 @@ public ArrayList<Ejercito> getEjercitos() {
 //public Stack<Batallon>getEjercitoConBatallones(int posicion){
 //	return ejercitos.get(posicion).getBatallones();
 //}
+
+public boolean localizarBatallon(Coordenada coordenada) {
+	// TODO Auto-generated method stub
+	boolean respuesta=localizarEstado;
+	if(respuesta) {
+		
+	
+	Ejercito ejercito=ejercitos.get(idEjercitoActual);
+	Batallon batallonActual=ejercito.getBatallonActual();
+    respuesta=tablero.insertar(batallonActual, coordenada);
+	if(respuesta) {
+		if(!ejercito.setSiguienteBatallon()) {
+			setSiguienteEjercito();
+		}
+	}
+	}
+	return respuesta;
+}
+public boolean getLocalizarEstado() {
+return localizarEstado;
+}
+
+private void setSiguienteEjercito() {
+	if(++idEjercitoActual==ejercitos.size()) {
+		idEjercitoActual=0;
+		localizarEstado=false;
+	}
+}
+
 
 
 public void colocarBatallon(Ejercito ejercito, Coordenada coordenada) {

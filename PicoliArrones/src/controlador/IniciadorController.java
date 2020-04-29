@@ -3,13 +3,32 @@ package controlador;
 import java.util.List;
 
 import modelo.Batallon;
+import modelo.Coordenada;
 import modelo.Soldado;
 import vistaInfo.EspecificacionSoldadosInfo;
 
-public class PobladorController {
+public class IniciadorController {
 
-	
-	private Batallon batallon;
+private Batallon batallon;
+
+private Juego juego;
+
+public IniciadorController(Juego juego) {
+	this.juego=juego;
+}
+
+public boolean localizar(Coordenada coordenada) {
+	juego.localizarBatallon(coordenada);
+	return false;
+}
+
+public Juego getJuego() {
+	return juego;
+}
+
+
+
+
 	
 	public void poblarBatallon(List <EspecificacionSoldadosInfo> especificacion) {
 		assert especificacion!=null;
@@ -28,6 +47,5 @@ public class PobladorController {
 	public void setBatallon(Batallon batallon) {
 		this.batallon = batallon;
 	}
-	
 	
 }

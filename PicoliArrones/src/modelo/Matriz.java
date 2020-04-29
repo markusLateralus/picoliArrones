@@ -27,4 +27,13 @@ public class Matriz<K,E> {
 	public K getClave(E element) {
 		return reverse.get(element);
 	}
+	public boolean contieneElemento(E e) {
+		// TODO Auto-generated method stub
+		return getClave(e)!=null;
+	}
+
+	public boolean contieneClave(K k) {
+		// TODO Auto-generated method stub
+		return getElement(k)!=null;
+	}
 }
