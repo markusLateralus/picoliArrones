@@ -18,6 +18,7 @@ import modelo.Dimension;
 import modelo.Ejercito;
 import modelo.Tablero;
 import modelo.Tipo;
+import vista.BordeArmada;
 import vista.TableroUI;
 import vistaInfo.TableroUIInfo;
 
@@ -32,7 +33,7 @@ public class TableroUIPrueba extends JFrame {
 	private ArrayList<Coordenada> coordenadas=new ArrayList<Coordenada>();
 	String nombre;
 	Coordenada coordenada;
-
+	BordeArmada bordeArmada;
 	TableroUIInfo tableroUIInfo;
 	/**
 	 * Launch the application.
@@ -61,7 +62,7 @@ public class TableroUIPrueba extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 
-			
+		 bordeArmada=new BordeArmada();
 
 	
 		 juego=new Juego();
@@ -69,7 +70,8 @@ public class TableroUIPrueba extends JFrame {
 		
 	
 	  //  juego.colocarBatallon(1,coordenada);
-		contentPane.add(tableroUI, BorderLayout.CENTER);
+		contentPane.add(tableroUI, BorderLayout.EAST);
+		contentPane.add(bordeArmada, BorderLayout.CENTER);
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	}
 //	private void colocarEjercito1(Coordenada coordenada,TableroUI tableroUI) {

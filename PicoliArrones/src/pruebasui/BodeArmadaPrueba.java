@@ -14,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-r;
+import controlador.IniciadorController;
 import modelo.Batallon;
 import modelo.Ejercito;
 import modelo.Especialidad;
@@ -37,7 +37,8 @@ public class BodeArmadaPrueba extends JFrame {
 	private JPanel contentPane;
 	private Ejercito ejercito;
 	private MercadoSoldadoDialog mercadoSoldadoDialog;
-	PobladorController pobladorController;
+
+	IniciadorController iniciadorController;
 	private MercadoSoldados mercadoSoldados;
 	private MercadoTipoDialog mercadoTipoDialog;
 	private MercadoTipo mercadoTipo;
@@ -93,13 +94,13 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 									//batallon=new Batallon(id, tipo);
 							batallon=ejercito.getBatallon(tipo);
 							batallon.setId(id);
-									pobladorController=new PobladorController(batallon, ejercito);
+									iniciadorController=new IniciadorController(batallon, ejercito);
 									//mercadoSoldados = new MercadoSoldados(id,tipo,batallon);
 									mercadoTipoDialog.dispose();
 									mercadoSoldados=new MercadoSoldados(batallon);
 									mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
 									mercadoSoldadoDialog.setVisible(true);	
-									pobladorController.poblarBatallon(getListaEjercito());
+									iniciadorController.poblarBatallon(getListaEjercito());
 //									ArrayList<Especialidad> tiposDeEspecialidades=Generador.getEspecialidad(batallon.getTipo());
 //									
 //									for (int i=0; i<tiposDeEspecialidades.size(); i++) {
@@ -113,14 +114,14 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 											// TODO Auto-generated method stub					
 											if (mercadoSoldadoDialog.compruebaMax()) {													
 						
-											 pobladorController.poblarBatallon(getListaEjercito());
+												iniciadorController.poblarBatallon(getListaEjercito());
 											//	pobladorController.agregarAlEjercito(batallon);
 												//  bordeArmada.update(Generador.getEjercitoInfo(ejercito));
 										
-											for (int i=0; i<pobladorController.getBatallones().size(); i++) {					
+											for (int i=0; i<iniciadorController.getBatallones().size(); i++) {					
 											
-													System.out.println("cantidad " + pobladorController.getBatallones().get(i).getCantidadSoldados() +
-															" tipo " +  pobladorController.getBatallones().get(i).getTipo());
+													System.out.println("cantidad " + iniciadorController.getBatallones().get(i).getCantidadSoldados() +
+															" tipo " +  iniciadorController.getBatallones().get(i).getTipo());
 
 														/*
 														 * -------------------------
@@ -200,3 +201,11 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	public Tipo getTipo() {
 		return mercadoTipo.getTipo();
 	}
+
+	public BordeArmada getBordeArmada() {
+		return bordeArmada;
+	}
+	
+	
+	
+}

@@ -46,6 +46,7 @@ public class BordeArmada extends JPanel {
 //		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
 		
 		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
+		setLayout(new MigLayout("", "[]", "[]"));
 	}
 
 	public void cargarEjercito(EjercitoInfo ejercitoInfo) {

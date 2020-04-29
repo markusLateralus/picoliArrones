@@ -52,7 +52,10 @@ public class Generador {
 		return new MercadoSoldadosInfo(batallon);
 	}
 	
-	
+	public static EjercitoInfo getNuevoEjercitoInfo(Ejercito ejercito) {
+		return new EjercitoInfo(ejercito.getId(), ejercito.getIdBatallonActual(), ejercito.getTipoBatallon(),
+				Ejercito.getInfanteria(), Ejercito.getCaballleria(), Ejercito.getArqueria());
+	}
 
 	public static EjercitoInfo getEjercitoInfo(Ejercito ejercito) {
 		return new EjercitoInfo(ejercito.getId(), ejercito.getIdBatallonActual(), ejercito.getTipoBatallon(),

@@ -23,6 +23,7 @@ public class ParaUIPruebaTablero extends TableroUIPrueba{
 		super();
 		Juego juego=new Juego();
 		iniciadorController=new IniciadorController(juego);
+		this.getBordeArmada();
 		this.getTableroUI().setMouseAdapter(mouseAdapter);
 		this.getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(juego));
 	}

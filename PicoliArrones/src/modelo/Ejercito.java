@@ -134,6 +134,10 @@ public int compareTo(Ejercito o) {
 	int resultado=new Integer(o.id).compareTo(new Integer(id));
 	return resultado;
 }
+public static int getCaballleria() {
+	// TODO Auto-generated method stub
+	return 0;
+}
 
 
 
