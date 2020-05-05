@@ -8,32 +8,24 @@ import controlador.Juego;
 import modelo.Coordenada;
 import modelo.Tablero;
 import vista.FichaBlanca;
-import vistaInfo.FichaInfo;
+import vistaInfo.FichaBatallonInfo;
 import vistaConversores.Generador;
 
 public class TableroUIInfo {
 
 	private Tablero tablero;
-	private int ancho;
-	private int alto;
+
 
 	public TableroUIInfo(Tablero tablero) {
 		super();
 		this.tablero = tablero;
-		this.alto=tablero.getAlto();
-		this.ancho=tablero.getAncho();
+	
 	}
 	
-	public int getAncho() {
-		return ancho;
-	}
-	public int getAlto() {
-		return alto;
-	}
+
 	
-	
-	public FichaInfo[][] getFichasInfo(){
-		FichaInfo[][] fichasFichaInfo=new FichaInfo[tablero.getAncho()][tablero.getAlto()];
+	public FichaBatallonInfo[][] getFichasInfo(){
+		FichaBatallonInfo[][] fichasFichaInfo=new FichaBatallonInfo[tablero.getAncho()][tablero.getAlto()];
 		for (int i = 0; i < fichasFichaInfo.length; i++) {
 			for (int j = 0; j < fichasFichaInfo[i].length; j++) {
 				fichasFichaInfo[i][j]=Generador.getFichaInfo(tablero, new Coordenada(i,j));

@@ -36,5 +36,4 @@ public class Utiles {
 		String[] split=coordenada.split(":");
 		return new Coordenada(Integer.valueOf(split[0]), Integer.valueOf(split[1]));
 	}
-		
 }

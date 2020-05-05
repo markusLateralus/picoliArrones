@@ -25,6 +25,7 @@ public class MercadoSoldados extends JPanel {
 	private ArrayList<EspecialidadSoldado> especialidades;
 	private JLabel lblTipoSoldado;
 	private JLabel lblTotal;
+	private Batallon batallon;
 	private MercadoTipo mercadoTipo;
 	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	//private LinkedList<Ejercito>ejercitos=new LinkedList<Ejercito>();
@@ -51,19 +52,28 @@ public class MercadoSoldados extends JPanel {
 	 */
 		
 		//Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
-	public MercadoSoldados(int id, Tipo tipo) {
+		public MercadoSoldados() {
+			
+		}
+		
+		
+	public void setBatallon(Batallon batallon) {
+		this.batallon = batallon;
+	}
+
+	public MercadoSoldados(Batallon batallon) {
 		
 		setLayout(null);
-		 
-		Batallon batallon=new Batallon(id, tipo);
+		 this.batallon=batallon;
+		//Batallon batallon=new Batallon(id, tipo);
 		
-		especialidades = Generador.getEspecialidades(tipo,miFocusAdapter);
+		especialidades = Generador.getEspecialidades(batallon.getTipo(),miFocusAdapter);
 		JLabel lblBatallonNumero = new JLabel("Batallon numero ");
 		int height2 = 16;
 		lblBatallonNumero.setBounds(62, 51, 165, height2);
 		add(lblBatallonNumero);
 
-		lblBatallonId = new JLabel(String.valueOf(id));
+		lblBatallonId = new JLabel(String.valueOf(batallon.getId()));
 		lblBatallonId.setBounds(256, 51, 56, height2);
 		add(lblBatallonId);
 
@@ -100,7 +110,7 @@ public class MercadoSoldados extends JPanel {
 
 		lblTotal.setBounds(245, 390, 56, height2);
 		add(lblTotal);
-		batallones.add(batallon);
+		//batallones.add(batallon);
 	}
 
 	private int sumaSoldados() {
@@ -126,6 +136,9 @@ public class MercadoSoldados extends JPanel {
 		return lblTipoSoldado;
 	}
 
+	public Batallon getBatallon() {
+		return batallon;
+	}
 	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
 		LinkedList<EspecificacionSoldadosInfo> response=new LinkedList<EspecificacionSoldadosInfo>();
 		for (EspecialidadSoldado especialidad : especialidades) {

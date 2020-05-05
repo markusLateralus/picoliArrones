@@ -14,10 +14,14 @@ import javax.swing.JPanel;
 
 import modelo.Batallon;
 import modelo.Tipo;
+import vista.MercadoSoldadoDialog;
+import vista.MercadoSoldados;
+import vista.MercadoTipo;
 import vista.MercadoTipoDialog;
 import vistaConversores.Generador;
 
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 
 public class MercadoSoldadosPrueba extends JFrame {
@@ -27,6 +31,10 @@ public class MercadoSoldadosPrueba extends JFrame {
 	MercadoTipoDialog mercadoTipoDialog;
 	private JTextArea textAreaInformativo;
 	private ArrayList <Tipo>tipos;
+	private MercadoTipo mercadoTipo;
+	private Batallon batallon;
+	private MercadoSoldados mercadoSoldados;
+	private MercadoSoldadoDialog mercadoSoldadoDialog;
 	public static MercadoSoldadosPrueba mercadoSoldadosPrueba = null;
 
 
@@ -63,25 +71,62 @@ public class MercadoSoldadosPrueba extends JFrame {
 		JButton btnDialogo = new JButton("crear Batallon");
 		btnDialogo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	//		tipos=new ArrayList<Tipo>(Arrays.asList(Tipo.values()));
-//			tipos=new ArrayList <Tipo>();
-//				tipos.add(Tipo.ARQUERIA);
-//				tipos.add(Tipo.CABALLERIA);
-//				tipos.add(Tipo.INFANTERIA);
-			tipos=Generador.getTipos();
-				mercadoTipoDialog=new MercadoTipoDialog(tipos);
-				mercadoTipoDialog.setVisible(true);
-			}
-		});
-		getContentPane().add(btnDialogo, BorderLayout.NORTH);
-		
-		textAreaInformativo = new JTextArea();
-		getContentPane().add(textAreaInformativo, BorderLayout.CENTER);
-		
-	}
+				 mercadoTipo=new MercadoTipo(Generador.getTipos());
+					mercadoTipoDialog=new MercadoTipoDialog(mercadoTipo);
+					mercadoTipoDialog.setVisible(true);
+					mercadoTipoDialog.getOkButton().addActionListener(new ActionListener() {	
+						@Override
+						public void actionPerformed(ActionEvent e) {
+								//	Tipo tipo = (Tipo) MercadoTipo.comboBox.getSelectedItem();
+							Tipo tipo=(Tipo)mercadoTipo.getComboBox().getSelectedItem();
+									int id=Integer.parseInt(getTextFieldId().getText());
+									batallon=new Batallon(id, tipo);
+									//mercadoSoldados = new MercadoSoldados(id,tipo,batallon);
+									mercadoTipoDialog.dispose();
+									mercadoSoldados=new MercadoSoldados(batallon);
+									mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
+									mercadoSoldadoDialog.setVisible(true);
+									
+									mercadoSoldadoDialog.getOkButton().addActionListener(new ActionListener() {
+
+										@Override
+										public void actionPerformed(ActionEvent e) {
+											// TODO Auto-generated method stub
+										//	listaEjercito = mercadoSoldados.getListaEjercito();								
+											//if (mercadoSoldadoDialog.compruebaMax()) {
+										
+//												pobladorController=new PobladorController(batallon);
+//												pobladorController.poblarBatallon(mercadoSoldados.getListaEjercito());
+//												System.out.println(batallon.getTipo());
+//												for (EspecificacionSoldadosInfo especificacion : mercadoSoldados.getListaEjercito()) {
+//													System.out.println(" especialidad:" + especificacion.getEspecialidad()  + " cantidad " + especificacion.getCantidad());
+//													
+//												}
+//										}
+//											mercadoSoldadoDialog.dispose();
+											
+										}
+								
+									});
+					}
+				
+			});
+				}
+			});
+					
+				
+			getContentPane().add(btnDialogo, BorderLayout.NORTH);
+			
+			textAreaInformativo = new JTextArea();
+			getContentPane().add(textAreaInformativo, BorderLayout.CENTER);
+			
+		}
 
 	
 	
+	public JTextField getTextFieldId() {
+		return mercadoTipo.getTextFieldId();
+	}
 	
 
 public ArrayList <Tipo> getTipos(){

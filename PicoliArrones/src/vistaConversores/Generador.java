@@ -21,7 +21,7 @@ import vista.FichaBlanca;
 import vista.MercadoTipoDialog;
 import vistaInfo.EjercitoInfo;
 import vistaInfo.EspecialidadSoldadoInfo;
-import vistaInfo.FichaInfo;
+import vistaInfo.FichaBatallonInfo;
 import vistaInfo.MercadoSoldadosInfo;
 import vistaInfo.TableroUIInfo;
 
@@ -54,7 +54,7 @@ public class Generador {
 	
 	public static EjercitoInfo getNuevoEjercitoInfo(Ejercito ejercito) {
 		return new EjercitoInfo(ejercito.getId(), ejercito.getIdBatallonActual(), ejercito.getTipoBatallon(),
-				Ejercito.getInfanteria(), Ejercito.getCaballleria(), Ejercito.getArqueria());
+				Ejercito.getInfanteria(), Ejercito.getCaballeria(), Ejercito.getArqueria());
 	}
 
 	public static EjercitoInfo getEjercitoInfo(Ejercito ejercito) {
@@ -62,13 +62,13 @@ public class Generador {
 				ejercito.getInfanteria(), ejercito.getCaballeria(), ejercito.getArqueria());
 	}
 
-	public static FichaInfo getFichaInfo(Tablero tablero, Coordenada coordenada) {
+	public static FichaBatallonInfo getFichaInfo(Tablero tablero, Coordenada coordenada) {
 		Casilla casilla = tablero.getCasilla(coordenada);
-		FichaInfo fichaInfo=null;
+		FichaBatallonInfo fichaInfo=null;
 		if(casilla!=null) {
 			Batallon batallon=(Batallon)casilla;
 			//TODO cambiar cuando el batallon tenga todos los valores para la ficha
-			fichaInfo=new FichaInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
+			fichaInfo=new FichaBatallonInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
 					-1, -1, -1, batallon.getMaximoSoldados(), false, Color.BLACK);
 		}
 		return fichaInfo;

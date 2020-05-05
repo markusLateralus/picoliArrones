@@ -12,7 +12,7 @@ import modelo.Tipo;
 import vistaInfo.EspecificacionSoldadosInfo;
 
 class PobladorControllerTest {
-
+/*
 	@Test
 	void testPoblarBatallon() {
 		PobladorController po=new PobladorController();
@@ -49,5 +49,5 @@ class PobladorControllerTest {
 		po.poblarBatallon(lista);
 		assertEquals(max, po.getBatallon().getCantidadSoldados());
 	}
-
+*/
 }

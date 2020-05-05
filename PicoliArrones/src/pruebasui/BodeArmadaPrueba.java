@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controlador.IniciadorController;
+import controlador.Juego;
 import modelo.Batallon;
 import modelo.Ejercito;
 import modelo.Especialidad;
@@ -37,7 +38,7 @@ public class BodeArmadaPrueba extends JFrame {
 	private JPanel contentPane;
 	private Ejercito ejercito;
 	private MercadoSoldadoDialog mercadoSoldadoDialog;
-
+Juego juego;
 	IniciadorController iniciadorController;
 	private MercadoSoldados mercadoSoldados;
 	private MercadoTipoDialog mercadoTipoDialog;
@@ -74,9 +75,8 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 
-		ejercito = new Ejercito(5);
-		ejercitos.add(ejercito);
-	     bordeArmada = new BordeArmada();
+	
+	     bordeArmada = new BordeArmada(new EjercitoInfo(1,1,Tipo.ARQUERIA,2,2,2));
 		contentPane.add(bordeArmada, BorderLayout.WEST);	
 		bordeArmada.cargarEjercito(Generador.getNuevoEjercitoInfo(ejercito));
 		getBtnPoblar().addActionListener(new ActionListener() {
@@ -94,7 +94,7 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 									//batallon=new Batallon(id, tipo);
 							batallon=ejercito.getBatallon(tipo);
 							batallon.setId(id);
-									iniciadorController=new IniciadorController(batallon, ejercito);
+									iniciadorController=new IniciadorController();
 									//mercadoSoldados = new MercadoSoldados(id,tipo,batallon);
 									mercadoTipoDialog.dispose();
 									mercadoSoldados=new MercadoSoldados(batallon);
@@ -118,10 +118,10 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 											//	pobladorController.agregarAlEjercito(batallon);
 												//  bordeArmada.update(Generador.getEjercitoInfo(ejercito));
 										
-											for (int i=0; i<iniciadorController.getBatallones().size(); i++) {					
+											for (int i=0; i<iniciadorController.getBatallones(1).size(); i++) {					
 											
-													System.out.println("cantidad " + iniciadorController.getBatallones().get(i).getCantidadSoldados() +
-															" tipo " +  iniciadorController.getBatallones().get(i).getTipo());
+													System.out.println("cantidad " + iniciadorController.getBatallones(1).get(i).getCantidadSoldados() +
+															" tipo " +  iniciadorController.getBatallones(1).get(i).getTipo());
 
 														/*
 														 * -------------------------
@@ -174,6 +174,14 @@ private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	}
 	
 	
+	public MercadoTipoDialog getMercadoTipoDialog() {
+		return mercadoTipoDialog;
+	}
+
+	public MercadoTipo getMercadoTipo() {
+		return mercadoTipo;
+	}
+
 	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
 		return mercadoSoldados.getListaEjercito();
 	}

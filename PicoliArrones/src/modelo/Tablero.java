@@ -42,17 +42,14 @@ public class Tablero {
 		return response;
 	}
 	
-	
+	public boolean isEnSuMitad(Ejercito ejercito, Coordenada coordenada) {
+		int y = coordenada.getY();
+		int mitad = getAncho() / 2;
+		int positionRelativa = y - (mitad * ejercito.getId()); //es como tener la mitad del tablero
+		return positionRelativa >= 0 && positionRelativa < mitad + ejercito.getId();
+	}
 
-//	public ArrayList<Casilla> getCasillas(ArrayList<Coordenada> coordenadas) {
-//		// TODO Auto-generated method stub
-//		ArrayList <Casilla>casillas=new ArrayList<Casilla>();
-//		for (int i = 0; i < coordenadas.size(); i++) {
-//			Casilla casilla=coordenadas.get(i);
-//			casillas.add((Casilla) coordenadas.get(i));
-//		}
-//		return casillas;
-//	}
+
 
 	public void insertar(ArrayList<Batallon> batallones, ArrayList<Coordenada> coordenadas) {
 		// TODO Auto-generated method stub

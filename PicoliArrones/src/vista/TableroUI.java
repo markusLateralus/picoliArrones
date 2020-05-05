@@ -8,8 +8,10 @@ import javax.swing.border.EmptyBorder;
 
 import controlador.Juego;
 import modelo.Coordenada;
+import modelo.Dimension;
 import utiles.Utiles;
-import vistaInfo.FichaInfo;
+import vistaInfo.FichaBatallonInfo;
+import vistaInfo.FichaCastilloInfo;
 import vistaInfo.TableroUIInfo;
 
 public class TableroUI extends JPanel {
@@ -17,16 +19,19 @@ public class TableroUI extends JPanel {
 	// Cada una de las casillas representadas en el tablero
 	private JPanel[][] fichas; //usamos una matriz
 	private MouseAdapter mouseAdapter;
-	private String nombre;
-	private Juego juego;
+	private Dimension dimension;
+	private int ancho, alto;
 
 	/**
 	 * Create the panel.
 	 */
-	public TableroUI(int ancho, int alto) {
+	public TableroUI(Dimension dimension) {
 		super();
+		this.dimension=dimension;
+		this.alto=dimension.getAlto();
+		this.ancho=dimension.getAncho();
 		//this.mouseAdapter = mouseAdapter;
-		fichas = new JPanel[ancho][alto];
+		fichas = new JPanel[dimension.getAncho()][dimension.getAlto()];
 		setBorder(new EmptyBorder(5, 5, 5, 5));
 		setLayout(new GridLayout(ancho, alto, 0, 0));
 		//actualizarTablero(tableroUIInfo);
@@ -34,7 +39,7 @@ public class TableroUI extends JPanel {
 
 	public void actualizarTablero(TableroUIInfo tableroUIInfo) { //se le añade el MouseListener y se agrega al PANEL
 		removeAll();
-		FichaInfo [][] fichasInfo=tableroUIInfo.getFichasInfo();
+		FichaBatallonInfo [][] fichasInfo=tableroUIInfo.getFichasInfo();
 		for (int i = 0; i < fichas.length; i++) {
 			for (int j = 0; j < fichas[i].length; j++) {
 				fichas[i][j] = getFicha(fichasInfo[i][j]);
@@ -47,12 +52,19 @@ public class TableroUI extends JPanel {
 	}
 	
 	
-	public  JPanel getFicha(FichaInfo fichaInfo) {
+	public  JPanel getFicha(FichaBatallonInfo fichaInfo) {
 		if(fichaInfo==null) {
 			return new FichaBlanca();
 		}
 		return new Ficha(fichaInfo);
 	}
+	
+//	public  JPanel getFicha(FichaCastilloInfo fichaInfo) {
+//		if(fichaInfo==null) {
+//			return new FichaBlanca();
+//		}
+//		return new FichaCastillo(fichaInfo);
+//	}
 public void setMouseAdapter(MouseAdapter mouseAdapter) {
 	this.mouseAdapter=mouseAdapter;
 //	actualizarTablero(tableroUIInfo);

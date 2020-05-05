@@ -35,18 +35,14 @@ public class BordeArmada extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public BordeArmada(	IniciadorController iniciadorController) {
+
+	public BordeArmada(EjercitoInfo ejercitoInfo) {
+		this.ejercitoInfo=ejercitoInfo;
 //		this.pobladorController=pobladorController;
 //		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
 		
 		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
-	}
-	public BordeArmada() {
-//		this.pobladorController=pobladorController;
-//		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
-		
-		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
-		setLayout(new MigLayout("", "[]", "[]"));
+		cargarEjercito(ejercitoInfo);
 	}
 
 	public void cargarEjercito(EjercitoInfo ejercitoInfo) {
