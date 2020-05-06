@@ -20,7 +20,6 @@ import modelo.Dimension;
 import modelo.Ejercito;
 import modelo.Tablero;
 import modelo.Tipo;
-import vista.BordeArmada;
 import vista.MercadoSoldados;
 import vista.MercadoTipo;
 import vista.MercadoTipoDialog;
@@ -57,11 +56,12 @@ public class UserInterface extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 	Dimension dimension=new Dimension(6,12);
-	 bordeArmada=new BordeArmada(new EjercitoInfo(1,1,Tipo.ARQUERIA,2,2,2));
+	
 		tableroUI=new TableroUI(dimension);
 		contentPane.add(tableroUI, BorderLayout.CENTER);
-	
+		 bordeArmada=new BordeArmada();
 		contentPane.add(bordeArmada, BorderLayout.WEST);
+	
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	
 		

@@ -1,4 +1,4 @@
-package vista;
+package pruebasui;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -26,23 +26,19 @@ public class BordeArmada extends JPanel {
 	private JLabel lblCurrentBattalionId;
 	private EjercitoInfo ejercitoInfo;
 	
-	IniciadorController iniciadorController;
 
-	public EjercitoInfo getEjercitoInfo() {
-		return ejercitoInfo;
-	}
-
+	
 	/**
 	 * Create the panel.
 	 */
 
-	public BordeArmada(EjercitoInfo ejercitoInfo) {
-		this.ejercitoInfo=ejercitoInfo;
+	public BordeArmada() {
+	
 //		this.pobladorController=pobladorController;
 //		this.ejercitoInfo=Generador.getEjercitoInfo( pobladorController.getEjercito());
 		
 		setLayout(new MigLayout("", "[66px][]", "[25px][25px][13px][][][][][][][][][][][][][][][][][][][]"));
-		cargarEjercito(ejercitoInfo);
+		
 	}
 
 	public void cargarEjercito(EjercitoInfo ejercitoInfo) {

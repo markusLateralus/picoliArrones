@@ -1,4 +1,4 @@
-package pruebasui;
+package controlador;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -12,14 +12,13 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controlador.IniciadorController;
-import controlador.Juego;
 import modelo.Batallon;
 import modelo.Coordenada;
 import modelo.Dimension;
 import modelo.Ejercito;
 import modelo.Tablero;
 import modelo.Tipo;
+import pruebasui.UserInterface;
 import utiles.Utiles;
 import vista.Advertencia;
 import vista.MercadoSoldadoDialog;
@@ -33,13 +32,13 @@ import vistaInfo.MiListener;
 public class ParaUI extends UserInterface {
 
 	IniciadorController iniciadorController;
-	Dimension dimension = new Dimension(6, 12);
+	Dimension dimension = new Dimension(12,6);
 	Juego juego = new Juego(dimension);
 	private MercadoSoldados mercadoSoldados;
 	private MercadoTipoDialog mercadoTipoDialog;
 	private MercadoTipo mercadoTipo;
 	private MercadoSoldadoDialog mercadoSoldadoDialog;
-	private Batallon batallon;
+
 	private Ejercito ejercito;
 
 	public ParaUI() {
@@ -47,7 +46,6 @@ public class ParaUI extends UserInterface {
 		iniciadorController = new IniciadorController(juego);
 		this.getBordeArmada().cargarEjercito(Generador.getNuevoEjercitoInfo(juego.getEjercitoActual()));
 		getBtnPoblar().addActionListener(new ActionListener() {
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -56,32 +54,28 @@ public class ParaUI extends UserInterface {
 				mercadoTipoDialog.setVisible(true);
 
 				getOkButton().addActionListener(new ActionListener() {
-
 					@Override
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						Tipo tipo = getTipos();
 						int id = getId();
-						// batallon=new Batallon(id, tipo);
-						batallon = juego.getEjercitoActual().getBatallonActual();
-						batallon.setId(id);
-						// iniciadorController=new IniciadorController();
-						// mercadoSoldados = new MercadoSoldados(id,tipo,batallon);
+					//Batallon batallon=new Batallon(id, tipo);
+						//batallon = juego.getEjercitoActual().getBatallonActual();
+						//batallon.setId(id);
 						mercadoTipoDialog.dispose();
-						mercadoSoldados = new MercadoSoldados(batallon);
+						mercadoSoldados = new MercadoSoldados(iniciadorController.getJuego().getBatallonActual());
 						mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
 						mercadoSoldadoDialog.setVisible(true);
-						iniciadorController.poblarBatallon(getListaEjercito());
+						//iniciadorController.poblarBatallon(getListaEjercito());
 
 						getOkButtonSoldadoDialog().addActionListener(new ActionListener() {
-
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								if (mercadoSoldadoDialog.compruebaMax()) {
-
 									iniciadorController.poblarBatallon(getListaEjercito());
 									// pobladorController.agregarAlEjercito(batallon);
+									getBordeArmada().getBtnPoblar().setEnabled(false);
 									getBordeArmada().update(Generador.getEjercitoInfo(juego.getEjercitoActual()));
 
 								}
@@ -112,8 +106,15 @@ public class ParaUI extends UserInterface {
 				new Advertencia(iniciadorController.getError());
 			}
 			getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(iniciadorController.getJuego()));
-
+			if(iniciadorController.isLocalizarEstado()) {
+				getBordeArmada().getBtnPoblar().setEnabled(true);
+				getBordeArmada().update(Generador.getEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
+			}else {
+				getBordeArmada().setVisible(false);
+			}
+	
 		}
+	
 	};
 
 

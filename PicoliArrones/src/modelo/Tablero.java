@@ -12,7 +12,7 @@ public class Tablero {
 	public Tablero(Dimension dimension) {
 		super();
 		this.dimension=dimension;
-		casillas=new Matriz<Coordenada, Casilla>(getAncho(), getAlto());
+		casillas=new Matriz<Coordenada, Casilla>(getAlto(),getAncho());
 		
 	}
 	
@@ -44,19 +44,13 @@ public class Tablero {
 	
 	public boolean isEnSuMitad(Ejercito ejercito, Coordenada coordenada) {
 		int y = coordenada.getY();
-		int mitad = getAncho() / 2;
+		int mitad = getAlto() / 2;
 		int positionRelativa = y - (mitad * ejercito.getId()); //es como tener la mitad del tablero
 		return positionRelativa >= 0 && positionRelativa < mitad + ejercito.getId();
 	}
 
 
 
-	public void insertar(ArrayList<Batallon> batallones, ArrayList<Coordenada> coordenadas) {
-		// TODO Auto-generated method stub
-		for (int i = 0; i < coordenadas.size(); i++) {
-				casillas.insertElement(coordenadas.get(i), batallones.get(i));
-			}
-			
-		}
+	
 	}
 

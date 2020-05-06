@@ -13,7 +13,6 @@ public class IniciadorController {
 
 	private Juego juego;
 
-	
 	public IniciadorController(Juego juego) {
 		super();
 		this.juego = juego;
@@ -31,11 +30,16 @@ public class IniciadorController {
 		}
 
 	}
+	
 	public String getError() {
 		return juego.getErrorActual().getMensaje();
 	}
 	public Juego getJuego() {
 		return juego;
+	}
+
+	public boolean isLocalizarEstado() {
+		return juego.isLocalizarEstado();
 	}
 
 

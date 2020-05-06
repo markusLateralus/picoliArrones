@@ -1,4 +1,4 @@
-package pruebasui;
+package ensayos;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -21,7 +21,7 @@ import modelo.Ejercito;
 import modelo.Especialidad;
 import modelo.Soldado;
 import modelo.Tipo;
-import vista.BordeArmada;
+import pruebasui.BordeArmada;
 import vista.EspecialidadSoldado;
 import vista.MercadoSoldadoDialog;
 import vista.MercadoSoldados;

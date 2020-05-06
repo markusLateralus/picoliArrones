@@ -1,4 +1,4 @@
-package pruebasui;
+package controlador;
 
 import java.awt.EventQueue;
 

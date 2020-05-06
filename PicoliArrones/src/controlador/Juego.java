@@ -86,5 +86,7 @@ private Dimension dimension;
 	}
 
 
-
+public Batallon getBatallonActual() {
+	return getEjercitoActual().getBatallonActual();
+}
 }
