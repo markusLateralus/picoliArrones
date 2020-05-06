@@ -32,7 +32,7 @@ import vistaInfo.MiListener;
 public class ParaUI extends UserInterface {
 
 	IniciadorController iniciadorController;
-	Dimension dimension = new Dimension(12,6);
+	Dimension dimension = new Dimension(6,12);
 	Juego juego = new Juego(dimension);
 	private MercadoSoldados mercadoSoldados;
 	private MercadoTipoDialog mercadoTipoDialog;
