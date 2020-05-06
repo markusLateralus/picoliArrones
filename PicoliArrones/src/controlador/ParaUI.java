@@ -31,20 +31,18 @@ import vistaInfo.MiListener;
 
 public class ParaUI extends UserInterface {
 
-	IniciadorController iniciadorController;
-	Dimension dimension = new Dimension(6,12);
-	Juego juego = new Juego(dimension);
+	private IniciadorController iniciadorController;
 	private MercadoSoldados mercadoSoldados;
 	private MercadoTipoDialog mercadoTipoDialog;
 	private MercadoTipo mercadoTipo;
 	private MercadoSoldadoDialog mercadoSoldadoDialog;
-
-	private Ejercito ejercito;
+	private Dimension dimension=new Dimension(6,12);
 
 	public ParaUI() {
 		super();
-		iniciadorController = new IniciadorController(juego);
-		this.getBordeArmada().cargarEjercito(Generador.getNuevoEjercitoInfo(juego.getEjercitoActual()));
+		iniciadorController = new IniciadorController(dimension);
+		this.crearTablero(iniciadorController);
+		this.getBordeArmada().cargarEjercito(Generador.getNuevoEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
 		getBtnPoblar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +74,7 @@ public class ParaUI extends UserInterface {
 									iniciadorController.poblarBatallon(getListaEjercito());
 									// pobladorController.agregarAlEjercito(batallon);
 									getBordeArmada().getBtnPoblar().setEnabled(false);
-									getBordeArmada().update(Generador.getEjercitoInfo(juego.getEjercitoActual()));
+									getBordeArmada().update(Generador.getEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
 
 								}
 								// bordeArmada.update(Generador.getEjercitoInfo(ejercito));
@@ -92,7 +90,7 @@ public class ParaUI extends UserInterface {
 
 		});
 		this.getTableroUI().setMouseAdapter(mouseAdapter);
-		this.getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(juego));
+		this.getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(iniciadorController.getJuego()));
 	}
 
 	MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -120,7 +118,7 @@ public class ParaUI extends UserInterface {
 
 	private int getId() {
 		// TODO Auto-generated method stub
-		return Integer.parseInt(getTextFieldId().getText());
+		return Integer.parseInt(getTextFieldId().getText().toString());
 	}
 
 	private JButton getBotonPoblar() {

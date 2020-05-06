@@ -17,7 +17,7 @@ import vistaInfo.TableroUIInfo;
 public class TableroUI extends JPanel {
 
 	// Cada una de las casillas representadas en el tablero
-	private JPanel[][] fichas; //usamos una matriz
+	private JPanel[][] fichas; // usamos una matriz
 	private MouseAdapter mouseAdapter;
 	private Dimension dimension;
 	private int ancho, alto;
@@ -27,19 +27,19 @@ public class TableroUI extends JPanel {
 	 */
 	public TableroUI(Dimension dimension) {
 		super();
-		this.dimension=dimension;
-		this.alto=dimension.getAlto();
-		this.ancho=dimension.getAncho();
-		//this.mouseAdapter = mouseAdapter;
+		this.dimension = dimension;
+		this.alto = dimension.getAlto();
+		this.ancho = dimension.getAncho();
+		// this.mouseAdapter = mouseAdapter;
 		fichas = new JPanel[dimension.getAncho()][dimension.getAlto()];
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setLayout(new GridLayout( ancho,alto, 0, 0));
-		//actualizarTablero(tableroUIInfo);
+		setLayout(new GridLayout(ancho, alto, 0, 0));
+		// actualizarTablero(tableroUIInfo);
 	}
 
-	public void actualizarTablero(TableroUIInfo tableroUIInfo) { //se le añade el MouseListener y se agrega al PANEL
+	public void actualizarTablero(TableroUIInfo tableroUIInfo) { // se le añade el MouseListener y se agrega al PANEL
 		removeAll();
-		FichaBatallonInfo [][] fichasInfo=tableroUIInfo.getFichasInfo();
+		FichaBatallonInfo[][] fichasInfo = tableroUIInfo.getFichasInfo();
 		for (int i = 0; i < fichas.length; i++) {
 			for (int j = 0; j < fichas[i].length; j++) {
 				fichas[i][j] = getFicha(fichasInfo[i][j]);
@@ -50,27 +50,27 @@ public class TableroUI extends JPanel {
 		}
 		revalidate();
 	}
-	
-	
-	public  JPanel getFicha(FichaBatallonInfo fichaInfo) {
-		if(fichaInfo==null) {
+
+	public JPanel getFicha(FichaBatallonInfo fichaInfo) {
+		if (fichaInfo == null) {
 			return new FichaBlanca();
 		}
-		return new Ficha(fichaInfo);
+		return new FichaBatallon(fichaInfo);
 	}
-	
-//	public  JPanel getFicha(FichaCastilloInfo fichaInfo) {
-//		if(fichaInfo==null) {
-//			return new FichaBlanca();
-//		}
-//		return new FichaCastillo(fichaInfo);
-//	}
-public void setMouseAdapter(MouseAdapter mouseAdapter) {
-	this.mouseAdapter=mouseAdapter;
-//	actualizarTablero(tableroUIInfo);
-}
 
-	public  Coordenada obtenCoordenada(String name) {
+	public JPanel getFicha(FichaCastilloInfo fichaCastillo) {
+		if (fichaCastillo == null) {
+			return new FichaBlanca();
+		}
+		return new FichaCastillo(fichaCastillo);
+	}
+
+	public void setMouseAdapter(MouseAdapter mouseAdapter) {
+		this.mouseAdapter = mouseAdapter;
+//	actualizarTablero(tableroUIInfo);
+	}
+
+	public Coordenada obtenCoordenada(String name) {
 		int pos = name.length() / 2;
 		return new Coordenada(Integer.valueOf(name.substring(0, pos)),
 				Integer.valueOf(name.substring(pos, name.length())));

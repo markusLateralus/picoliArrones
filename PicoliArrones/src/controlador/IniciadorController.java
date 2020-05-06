@@ -1,21 +1,20 @@
 package controlador;
-
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
 
-import modelo.Batallon;
 import modelo.Coordenada;
+import modelo.Dimension;
 import modelo.Soldado;
 import vistaInfo.EspecificacionSoldadosInfo;
 
 public class IniciadorController {
 
 	private Juego juego;
+	private Dimension dimension;
 
-	public IniciadorController(Juego juego) {
+	public IniciadorController(Dimension dimension) {
 		super();
-		this.juego = juego;
+		this.dimension=dimension;
+		juego=new Juego(this.dimension);
 	}
 
 	public boolean localizar(Coordenada coordenada) {
@@ -42,5 +41,8 @@ public class IniciadorController {
 		return juego.isLocalizarEstado();
 	}
 
+	public Dimension getDimension() {
+		return this.dimension;
+	}
 
 }

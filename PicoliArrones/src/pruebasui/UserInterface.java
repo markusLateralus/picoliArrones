@@ -13,6 +13,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.IniciadorController;
 import controlador.Juego;
 import modelo.Batallon;
 import modelo.Coordenada;
@@ -33,17 +34,7 @@ public class UserInterface extends JFrame {
 	private JPanel contentPane;
 	private TableroUI tableroUI;
 	private BordeArmada bordeArmada;
-	private TableroUIInfo tableroUIInfo;
-
-	private Ejercito ejercito;
-	LinkedList <Ejercito> ejercitos=new LinkedList<Ejercito>();
-
-
-	/**
-	 * Launch the application.
-	 */
-
-
+	private IniciadorController iniciadorController;
 	/**
 	 * Create the frame.
 	 */
@@ -55,13 +46,8 @@ public class UserInterface extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-	Dimension dimension=new Dimension(6,12);
-	
-		tableroUI=new TableroUI(dimension);
-		contentPane.add(tableroUI, BorderLayout.CENTER);
 		 bordeArmada=new BordeArmada();
 		contentPane.add(bordeArmada, BorderLayout.WEST);
-	
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 	
 		
@@ -81,5 +67,11 @@ public class UserInterface extends JFrame {
 		return bordeArmada.getBtnPoblar();
 	}
 	
+	public void crearTablero(IniciadorController iniciadorController) {
+		TableroUIInfo tableroUIinfo=new TableroUIInfo(iniciadorController.getJuego().getTablero());
+	   // Dimension dimension=new Dimension(6,12);	
+	    tableroUI=new TableroUI(iniciadorController.getDimension());
+			contentPane.add(tableroUI, BorderLayout.CENTER);
+	}
 
 }

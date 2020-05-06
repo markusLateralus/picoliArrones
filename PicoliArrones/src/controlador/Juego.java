@@ -6,6 +6,7 @@ import java.util.ArrayDeque;
 
 
 import modelo.Batallon;
+import modelo.Castillo;
 import modelo.Coordenada;
 import modelo.Dimension;
 import modelo.Ejercito;
@@ -28,9 +29,13 @@ private Dimension dimension;
 		super();
 		this.dimension=dimension;
 		this.tablero = new Tablero(dimension);
-		ejercitos.offer(new Ejercito(0));  //inserta al final de la cola
-		ejercitos.offer(new Ejercito(1));
+		Ejercito ejercitoCero = new Ejercito(0);
+		ejercitos.offer(ejercitoCero);  //inserta al final de la cola
+		Ejercito ejercitoUno = new Ejercito(1);
+		ejercitos.offer(ejercitoUno);
 		primerEjercito = ejercitos.peek(); //recuperamos el primero de la cola
+		tablero.insertar(new Castillo(ejercitoCero), new Coordenada(1,1));
+		tablero.insertar(new Castillo(ejercitoUno), new Coordenada(3,4));
 	}
 
 	public Tablero getTablero() {

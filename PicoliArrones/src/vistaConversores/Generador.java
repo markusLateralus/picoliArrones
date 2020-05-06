@@ -10,18 +10,20 @@ import javax.swing.JPanel;
 import controlador.Juego;
 import modelo.Batallon;
 import modelo.Casilla;
+import modelo.Castillo;
 import modelo.Coordenada;
 import modelo.Ejercito;
 import modelo.Especialidad;
 import modelo.Tablero;
 import modelo.Tipo;
 import vista.EspecialidadSoldado;
-import vista.Ficha;
+import vista.FichaBatallon;
 import vista.FichaBlanca;
 import vista.MercadoTipoDialog;
 import vistaInfo.EjercitoInfo;
 import vistaInfo.EspecialidadSoldadoInfo;
 import vistaInfo.FichaBatallonInfo;
+import vistaInfo.FichaCastilloInfo;
 import vistaInfo.MercadoSoldadosInfo;
 import vistaInfo.TableroUIInfo;
 
@@ -62,7 +64,7 @@ public class Generador {
 				ejercito.getInfanteria(), ejercito.getCaballeria(), ejercito.getArqueria());
 	}
 
-	public static FichaBatallonInfo getFichaInfo(Tablero tablero, Coordenada coordenada) {
+	public static FichaBatallonInfo getFichaBatallonInfo(Tablero tablero, Coordenada coordenada) {
 		Casilla casilla = tablero.getCasilla(coordenada);
 		FichaBatallonInfo fichaInfo=null;
 		if(casilla!=null) {
@@ -74,7 +76,15 @@ public class Generador {
 		return fichaInfo;
 	}
 
-	
+	public static FichaCastilloInfo getFichaCastilloInfo(Tablero tablero, Coordenada coordenada) {
+		Casilla casilla = tablero.getCasilla(coordenada);
+		FichaCastilloInfo fichaCastilloInfo=null;
+		if(casilla!=null) {
+			Castillo castillo=(Castillo)casilla;
+			fichaCastilloInfo=new FichaCastilloInfo(castillo.getEjercito().getId());
+		}
+		return fichaCastilloInfo;
+	}
 	
 	public static TableroUIInfo getTableroUIIinfo(Juego juego) {
 		return new TableroUIInfo(juego.getTablero());

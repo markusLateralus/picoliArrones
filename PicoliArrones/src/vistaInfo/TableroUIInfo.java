@@ -28,7 +28,7 @@ public class TableroUIInfo {
 		FichaBatallonInfo[][] fichasFichaInfo=new FichaBatallonInfo[tablero.getAncho()][tablero.getAlto()];
 		for (int i = 0; i < fichasFichaInfo.length; i++) {
 			for (int j = 0; j < fichasFichaInfo[i].length; j++) {
-				fichasFichaInfo[i][j]=Generador.getFichaInfo(tablero, new Coordenada(i,j));
+				fichasFichaInfo[i][j]=Generador.getFichaBatallonInfo(tablero, new Coordenada(i,j));
 			}
 		}
 		return fichasFichaInfo;

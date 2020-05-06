@@ -8,7 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import vista.Ficha;
+import vista.FichaBatallon;
 import vistaInfo.FichaBatallonInfo;
 
 
@@ -41,7 +41,7 @@ public class FichaPrueba extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
-		contentPane.add(new Ficha(new FichaBatallonInfo("/Imagenes/ligera.png", 30, 40, 50, 60, 70, 80, 90, true, Color.BLUE)), BorderLayout.CENTER);
+		contentPane.add(new FichaBatallon(new FichaBatallonInfo("/Imagenes/ligera.png", 30, 40, 50, 60, 70, 80, 90, true, Color.BLUE)), BorderLayout.CENTER);
 		
 		
 	}
