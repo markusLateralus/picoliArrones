@@ -1,5 +1,10 @@
 package modelo;
 
+import controlador.Juego;
+import vistaInfo.CasillaInfo;
+
 public interface Casilla {
-aa
+
+	public Casilla crear(Tablero tablero, Coordenada coordenada);
+	
 }

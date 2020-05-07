@@ -1,6 +1,6 @@
 package modelo;
 
-public class Coordenada {
+public class Coordenada{
 
 	
 	private int x, y;
@@ -37,12 +37,14 @@ public class Coordenada {
 		}
 		return response;
 	}
-	@Override
-	public int hashCode() {
-		return getX()*10+getY();
-	}
-	@Override
-	public String toString() {
-		return getX()+":"+getY()+"::"+hashCode();
-	}
+//	@Override
+//	public int hashCode() {
+//		return getX()*10+getY();
+//	}
+//	@Override
+//	public String toString() {
+//		return getX()+":"+getY()+"::"+hashCode();
+//	}
+
+	
 }

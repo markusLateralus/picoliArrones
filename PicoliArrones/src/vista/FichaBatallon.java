@@ -10,9 +10,10 @@ import javax.swing.*;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 
+import vistaInfo.CasillaInfo;
 import vistaInfo.FichaBatallonInfo;
 
-public class FichaBatallon extends JPanel{
+public class FichaBatallon extends Ficha{
 	private JTextField txtColorEnemy;
 	private JTextField txtColorArmy;
 	private JLabel lblExperience;
@@ -27,6 +28,7 @@ public class FichaBatallon extends JPanel{
 	 * Create the panel.
 	 */
 	public FichaBatallon(FichaBatallonInfo information) {
+		super(information);
 		int mediaFont=14,bigFont=20;
 		int columns=3;
 		setBorder(new LineBorder(new Color(0, 0, 0), 3));

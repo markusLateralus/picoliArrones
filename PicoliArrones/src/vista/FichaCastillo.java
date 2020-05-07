@@ -9,12 +9,13 @@ import javax.swing.SwingConstants;
 
 import vistaInfo.FichaCastilloInfo;
 
-public class FichaCastillo extends JPanel {
+public class FichaCastillo extends Ficha {
 
 	/**
 	 * Create the panel.
 	 */
 	public FichaCastillo(FichaCastilloInfo fichaCastilloInfo) {
+		super(fichaCastilloInfo);
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblCastlloEjercito = new JLabel("Castillo Ejercito");

@@ -4,6 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import controlador.Juego;
+import vistaInfo.CasillaInfo;
+import vistaInfo.FichaBatallonInfo;
+
 public class Batallon implements Casilla {
 
 	private int id;
@@ -74,6 +78,32 @@ public class Batallon implements Casilla {
 //		
 //	return comprueba;
 	}
+
+
+	@Override
+	public Casilla crear(Tablero tablero, Coordenada coordenada) {
+		// TODO Auto-generated method stub
+		Casilla casilla = tablero.getCasilla(coordenada);
+		Batallon batallon=null;
+	//	FichaBatallonInfo fichaInfo=null;
+		if(casilla!=null) {
+			for (int i = 0; i < tablero.getCoordenadasCastillos().length; i++) {
+				Coordenada aux=tablero.getCoordenadasCastillos()[i];
+				if(!aux.equals(coordenada)) {
+					batallon=(Batallon)casilla;
+		//			return new FichaBatallonInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
+			//			-1, -1, -1, batallon.getMaximoSoldados(), false, Color.BLACK);
+				return batallon;
+				}
+			}
+		
+		
+		}
+		return null;
+	}
+
+
+
 	
 	
 	

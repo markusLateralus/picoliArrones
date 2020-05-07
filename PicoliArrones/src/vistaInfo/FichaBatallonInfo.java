@@ -2,7 +2,19 @@ package vistaInfo;
 
 import java.awt.Color;
 
-public class FichaBatallonInfo {
+import javax.swing.JPanel;
+
+import controlador.Juego;
+import modelo.Batallon;
+import modelo.Casilla;
+import modelo.Coordenada;
+import modelo.Tablero;
+import vista.FichaBatallon;
+import vista.FichaCastillo;
+import vista.TableroUI;
+
+public class FichaBatallonInfo implements CasillaInfo{
+	private  Casilla casilla;
 	private String icon;
 	private int army;
 	private int battalion;
@@ -17,7 +29,7 @@ public class FichaBatallonInfo {
 	
 	public FichaBatallonInfo(String icon, int army, int battalion, int experience, int attack, int defence, int stamina,
 			int units, boolean heroe,Color colorArmy) {
-		super();
+	
 		this.icon = icon;
 		this.army = army;
 		this.battalion = battalion;
@@ -85,5 +97,27 @@ public class FichaBatallonInfo {
 	public void setColorEnemy(Color colorEnemy) {
 		this.colorEnemy = colorEnemy;
 	}
+
+
+
+	@Override
+	public Casilla getCasilla() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public CasillaInfo crearFichaInfo(Casilla casilla) {
+		// TODO Auto-generated method stub
+		Batallon batallon=(Batallon)casilla;
+	return new FichaBatallonInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
+		-1, -1, -1, batallon.getMaximoSoldados(), false, Color.BLACK);
+	}
+
+
+
+
+
 	
 }

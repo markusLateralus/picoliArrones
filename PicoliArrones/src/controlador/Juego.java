@@ -25,6 +25,11 @@ public class Juego {
 private Dimension dimension;
 
 
+
+	public Coordenada[] getCoordenadasCastillos() {
+	return tablero.getCoordenadasCastillos();
+}
+
 	public Juego(Dimension dimension) {
 		super();
 		this.dimension=dimension;
@@ -34,8 +39,8 @@ private Dimension dimension;
 		Ejercito ejercitoUno = new Ejercito(1);
 		ejercitos.offer(ejercitoUno);
 		primerEjercito = ejercitos.peek(); //recuperamos el primero de la cola
-		tablero.insertar(new Castillo(ejercitoCero), new Coordenada(1,1));
-		tablero.insertar(new Castillo(ejercitoUno), new Coordenada(3,4));
+		tablero.insertar(new Castillo(ejercitoCero), getCoordenadasCastillos()[0]);
+		tablero.insertar(new Castillo(ejercitoUno), getCoordenadasCastillos()[1]);
 	}
 
 	public Tablero getTablero() {
@@ -94,4 +99,7 @@ private Dimension dimension;
 public Batallon getBatallonActual() {
 	return getEjercitoActual().getBatallonActual();
 }
+
+
+
 }

@@ -6,7 +6,7 @@ import modelo.Coordenada;
 
 public class Tablero {
 	private Dimension dimension;
-	
+	private Coordenada[] coordenadasCastillos= {new Coordenada(1,1), new Coordenada(3,4)};
 	private Matriz<Coordenada, Casilla> casillas; //BIDIRECCIONAL
 	
 	public Tablero(Dimension dimension) {
@@ -16,6 +16,10 @@ public class Tablero {
 		
 	}
 	
+	public Coordenada[] getCoordenadasCastillos() {
+		return coordenadasCastillos;
+	}
+
 	public int getAncho() {
 		return dimension.getAncho();
 	}

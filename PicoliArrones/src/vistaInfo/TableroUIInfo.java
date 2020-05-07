@@ -21,18 +21,31 @@ public class TableroUIInfo {
 		this.tablero = tablero;
 	
 	}
-	
 
 	
-	public FichaBatallonInfo[][] getFichasInfo(){
-		FichaBatallonInfo[][] fichasFichaInfo=new FichaBatallonInfo[tablero.getAncho()][tablero.getAlto()];
-		for (int i = 0; i < fichasFichaInfo.length; i++) {
-			for (int j = 0; j < fichasFichaInfo[i].length; j++) {
-				fichasFichaInfo[i][j]=Generador.getFichaBatallonInfo(tablero, new Coordenada(i,j));
+	
+	public CasillaInfo[][] getFichasInfo(){
+		CasillaInfo[][] fichasInfo=new CasillaInfo[tablero.getAncho()][tablero.getAlto()];
+		for (int i = 0; i < fichasInfo.length; i++) {
+			for (int j = 0; j < fichasInfo[i].length; j++) {
+				fichasInfo[i][j]=Generador.getFichaInfo(tablero, new Coordenada(i,j));
 			}
 		}
-		return fichasFichaInfo;
+		return fichasInfo;
 	}
+	
+	
+
+//	
+//	public FichaBatallonInfo[][] getFichasInfo(){
+//		FichaBatallonInfo[][] fichasFichaInfo=new FichaBatallonInfo[tablero.getAncho()][tablero.getAlto()];
+//		for (int i = 0; i < fichasFichaInfo.length; i++) {
+//			for (int j = 0; j < fichasFichaInfo[i].length; j++) {
+//				fichasFichaInfo[i][j]=Generador.getFichaBatallonInfo(tablero, new Coordenada(i,j));
+//			}
+//		}
+//		return fichasFichaInfo;
+//	}
 	
 //	public void colocarEjercito(JPanel fichas[][]) {
 //		ArrayList<Coordenada>coordenadas=new ArrayList<Coordenada>();
