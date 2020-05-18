@@ -3,10 +3,10 @@ package modelo;
 import java.util.ArrayList;
 
 import modelo.Coordenada;
+import modelo.Casilla;
 
 public class Tablero {
 	private Dimension dimension;
-	private Coordenada[] coordenadasCastillos= {new Coordenada(1,1), new Coordenada(3,4)};
 	private Matriz<Coordenada, Casilla> casillas; //BIDIRECCIONAL
 	
 	public Tablero(Dimension dimension) {
@@ -15,9 +15,8 @@ public class Tablero {
 		casillas=new Matriz<Coordenada, Casilla>(getAlto(),getAncho());
 		
 	}
-	
-	public Coordenada[] getCoordenadasCastillos() {
-		return coordenadasCastillos;
+	public Dimension getDimension() {
+		return dimension;
 	}
 
 	public int getAncho() {
@@ -52,7 +51,10 @@ public class Tablero {
 		int positionRelativa = y - (mitad * ejercito.getId()); //es como tener la mitad del tablero
 		return positionRelativa >= 0 && positionRelativa < mitad + ejercito.getId();
 	}
-
+	private  boolean validaCoordenada(Coordenada posicion) {
+		return posicion.getX() >= 0 && posicion.getY() >= 0 && posicion.getX() < this.dimension.getAncho()
+				&& posicion.getY() < this.dimension.getAlto(); 
+	}
 
 
 	

@@ -5,18 +5,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.ArrayList;
+
 import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import modelo.Batallon;
+
 import modelo.Coordenada;
 import modelo.Dimension;
-import modelo.Ejercito;
-import modelo.Tablero;
+
 import modelo.Tipo;
 import pruebasui.UserInterface;
 import utiles.Utiles;
@@ -27,7 +26,8 @@ import vista.MercadoTipo;
 import vista.MercadoTipoDialog;
 import vistaConversores.Generador;
 import vistaInfo.EspecificacionSoldadosInfo;
-import vistaInfo.MiListener;
+
+import vistaInfo.TableroUIInfo;
 
 public class ParaUI extends UserInterface {
 
@@ -42,6 +42,9 @@ public class ParaUI extends UserInterface {
 		super();
 		iniciadorController = new IniciadorController(dimension);
 		this.crearTablero(iniciadorController);
+		this.getTableroUI().setMouseAdapter(mouseAdapter);
+		this.getTableroUI().actualizarTablero(getTableroUIInfo(iniciadorController.getJuego()));
+	
 		this.getBordeArmada().cargarEjercito(Generador.getNuevoEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
 		getBtnPoblar().addActionListener(new ActionListener() {
 			@Override
@@ -89,8 +92,7 @@ public class ParaUI extends UserInterface {
 			}
 
 		});
-		this.getTableroUI().setMouseAdapter(mouseAdapter);
-		this.getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(iniciadorController.getJuego()));
+	
 	}
 
 	MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -103,7 +105,7 @@ public class ParaUI extends UserInterface {
 			if (!iniciadorController.localizar(coordenada)) {
 				new Advertencia(iniciadorController.getError());
 			}
-			getTableroUI().actualizarTablero(Generador.getTableroUIIinfo(iniciadorController.getJuego()));
+			getTableroUI().actualizarTablero(getTableroUIInfo(iniciadorController.getJuego()));
 			if(iniciadorController.isLocalizarEstado()) {
 				getBordeArmada().getBtnPoblar().setEnabled(true);
 				getBordeArmada().update(Generador.getEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
@@ -144,4 +146,8 @@ public class ParaUI extends UserInterface {
 	private JButton getOkButtonSoldadoDialog() {
 		return mercadoSoldadoDialog.getOkButton();
 	}
+	public TableroUIInfo getTableroUIInfo(Juego juego) {
+		return new TableroUIInfo(juego);
+	}
+	
 }

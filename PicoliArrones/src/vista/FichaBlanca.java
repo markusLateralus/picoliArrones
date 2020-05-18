@@ -4,7 +4,7 @@ import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 
-public class FichaBlanca extends Ficha {
+public class FichaBlanca extends JPanel {
 
 	/**
 	 * Create the panel.

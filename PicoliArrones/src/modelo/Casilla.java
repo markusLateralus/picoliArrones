@@ -1,10 +1,8 @@
 package modelo;
 
-import controlador.Juego;
-import vistaInfo.CasillaInfo;
+import vistaInfo.FichaFactory;
 
 public interface Casilla {
-
-	public Casilla crear(Tablero tablero, Coordenada coordenada);
 	
+	public FichaFactory getFactory(Ejercito ejercito);
 }

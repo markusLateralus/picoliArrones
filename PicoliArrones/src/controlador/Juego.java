@@ -6,6 +6,8 @@ import java.util.ArrayDeque;
 
 
 import modelo.Batallon;
+import modelo.Blanca;
+import modelo.Casilla;
 import modelo.Castillo;
 import modelo.Coordenada;
 import modelo.Dimension;
@@ -25,22 +27,20 @@ public class Juego {
 private Dimension dimension;
 
 
-
-	public Coordenada[] getCoordenadasCastillos() {
-	return tablero.getCoordenadasCastillos();
-}
-
 	public Juego(Dimension dimension) {
 		super();
 		this.dimension=dimension;
-		this.tablero = new Tablero(dimension);
+		this.tablero = new Tablero(this.dimension);
 		Ejercito ejercitoCero = new Ejercito(0);
+		tablero.insertar(new Castillo(ejercitoCero), new Coordenada(1,3));
 		ejercitos.offer(ejercitoCero);  //inserta al final de la cola
 		Ejercito ejercitoUno = new Ejercito(1);
+	
+	
+
+		tablero.insertar(new Castillo(ejercitoUno), new Coordenada( dimension.getAlto()-2,3));
 		ejercitos.offer(ejercitoUno);
 		primerEjercito = ejercitos.peek(); //recuperamos el primero de la cola
-		tablero.insertar(new Castillo(ejercitoCero), getCoordenadasCastillos()[0]);
-		tablero.insertar(new Castillo(ejercitoUno), getCoordenadasCastillos()[1]);
 	}
 
 	public Tablero getTablero() {
@@ -92,12 +92,30 @@ private Dimension dimension;
 
 	public void alistarSoldadoBatallonActual(Soldado soldado) {
 		// Demeter
-		getEjercitoActual().getBatallonActual().alistarSoldado(soldado);
+		getBatallonActual().alistarSoldado(soldado);
 	}
 
 
 public Batallon getBatallonActual() {
 	return getEjercitoActual().getBatallonActual();
+}
+
+public Casilla getCasilla(Coordenada coordenada) {
+	Casilla casilla = tablero.getCasilla(coordenada);
+	if(casilla==null) {
+		return new Blanca();
+	}
+	return casilla;
+}
+
+public int getAncho() {
+	// TODO Auto-generated method stub
+	return dimension.getAncho();
+}
+
+public int getAlto() {
+	// TODO Auto-generated method stub
+	return dimension.getAlto();
 }
 
 

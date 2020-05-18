@@ -4,9 +4,10 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import controlador.Juego;
-import vistaInfo.CasillaInfo;
-import vistaInfo.FichaBatallonInfo;
+
+import vistaInfo.FichaInfo;
+import vistaInfo.BatallonFichaFactory;
+import vistaInfo.FichaFactory;
 
 public class Batallon implements Casilla {
 
@@ -15,7 +16,7 @@ public class Batallon implements Casilla {
 	private Tipo tipo;
 	private LinkedList<Soldado>soldados=new LinkedList<Soldado>();
 	private Color colorBatallon;
-	
+	private boolean marcada=false;
 	public Batallon(int id, Tipo tipo) {
 		super();
 		this.id = id;
@@ -80,28 +81,55 @@ public class Batallon implements Casilla {
 	}
 
 
-	@Override
-	public Casilla crear(Tablero tablero, Coordenada coordenada) {
-		// TODO Auto-generated method stub
-		Casilla casilla = tablero.getCasilla(coordenada);
-		Batallon batallon=null;
-	//	FichaBatallonInfo fichaInfo=null;
-		if(casilla!=null) {
-			for (int i = 0; i < tablero.getCoordenadasCastillos().length; i++) {
-				Coordenada aux=tablero.getCoordenadasCastillos()[i];
-				if(!aux.equals(coordenada)) {
-					batallon=(Batallon)casilla;
-		//			return new FichaBatallonInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
-			//			-1, -1, -1, batallon.getMaximoSoldados(), false, Color.BLACK);
-				return batallon;
-				}
-			}
+
+	public boolean isMarcada() {
+		return marcada;
+	}
+	public void setMarcada(boolean marcada) {
+		this.marcada = marcada;
+	}
+	public boolean marcar() {
+	//	boolean retorno=false;
 		
+		boolean marcada= this.isMarcada();
+		this.setMarcada(!marcada);
+			return  this.isMarcada();
 		
-		}
-		return null;
 	}
 
+
+	@Override
+	public FichaFactory getFactory(Ejercito ejercito) {
+		// TODO Auto-generated method stub
+		return new BatallonFichaFactory(getId(), getCantidadSoldados(), ejercito);
+		}
+
+		public Soldado getSoldado() {
+			return soldados.pop();
+		}
+		// si curamos soldados, los que tengan stamina critica pero mayor que cero
+//		public Soldado getSoldado() {
+//			Soldado pop = soldados.pop();
+//			//usar la cola de soldados como una lista y preguntar (recorrer) si hay algun
+//			//elemento no critico
+//			while(pop.isCriticaStamina()) {
+//				soldados.offer(pop);
+//				pop=soldados.pop();
+//			}
+//			return pop;
+//		}
+
+		public void tratarSoldado(Soldado soldado) {
+			// TODO Auto-generated method stub
+			// nivel de stamina? critico o no
+			if (!soldado.isCriticaStamina()) {
+				soldados.offer(soldado);
+			}
+		}
+
+		public boolean haySoldados() {
+			return !soldados.isEmpty();
+		}
 
 
 	

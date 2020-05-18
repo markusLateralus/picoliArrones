@@ -1,31 +1,28 @@
 package vistaConversores;
 
-import java.awt.Color;
+
 import java.awt.event.FocusAdapter;
-import java.lang.reflect.Method;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import javax.swing.JPanel;
+
 
 import controlador.Juego;
 import modelo.Batallon;
-import modelo.Casilla;
-import modelo.Castillo;
+
 import modelo.Coordenada;
 import modelo.Ejercito;
 import modelo.Especialidad;
-import modelo.Tablero;
+
 import modelo.Tipo;
+import modelo.Casilla;
 import vista.EspecialidadSoldado;
-import vista.FichaBatallon;
-import vista.FichaBlanca;
-import vista.MercadoTipoDialog;
-import vistaInfo.CasillaInfo;
+
+import vistaInfo.FichaInfo;
 import vistaInfo.EjercitoInfo;
 import vistaInfo.EspecialidadSoldadoInfo;
-import vistaInfo.FichaBatallonInfo;
-import vistaInfo.FichaCastilloInfo;
+
 import vistaInfo.MercadoSoldadosInfo;
 import vistaInfo.TableroUIInfo;
 
@@ -66,66 +63,10 @@ public class Generador {
 				ejercito.getInfanteria(), ejercito.getCaballeria(), ejercito.getArqueria());
 	}
 	
-	public static FichaBatallonInfo getFichaBatallonInfo(Casilla casilla) {
-
-
-		
-		return null;
 	
-		
-	}
-	public static CasillaInfo getFichaInfo(Tablero tablero, Coordenada coordenada) {
-		
-		Casilla casilla = tablero.getCasilla(coordenada);
-		CasillaInfo casillaInfo;
-		if(casilla!=null) {
-		for (int i = 0; i < tablero.getCoordenadasCastillos().length; i++) {
-			Coordenada aux= tablero.getCoordenadasCastillos()[i];
-					if(coordenada.equals(aux)) {
-						Castillo castillo=(Castillo) casilla;
-						casillaInfo=(FichaCastilloInfo) castillo.crear(tablero, coordenada);
-						casillaInfo.crearFichaInfo(castillo);
-						return casillaInfo;
-					}
-					else {
-						Batallon batallon=(Batallon) casilla;
-						casillaInfo=(FichaBatallonInfo) batallon.crear(tablero, coordenada);
-						casillaInfo.crearFichaInfo(batallon);
-						return casillaInfo;
-					}
-		}
-		}
-		//CasillaInfo casillaInfo=(CasillaInfo) tablero.getCasilla(coordenada);
-		return null;
-	}
 	
 
-//	public static FichaBatallonInfo getFichaBatallonInfo(Tablero tablero, Coordenada coordenada) {
-//		Casilla casilla = tablero.getCasilla(coordenada);
-//		FichaBatallonInfo fichaInfo=null;
-//		if(casilla!=null) {
-//			Batallon batallon=(Batallon)casilla;
-//			//TODO cambiar cuando el batallon tenga todos los valores para la ficha
-//			fichaInfo=new FichaBatallonInfo("/Imagenes/ligera.png", -1, batallon.getId(), -1,
-//					-1, -1, -1, batallon.getMaximoSoldados(), false, Color.BLACK);
-//		}
-//		return fichaInfo;
-//	}
-//
-//	public static FichaCastilloInfo getFichaCastilloInfo(Tablero tablero, Coordenada coordenada) {
-//		Casilla casilla = tablero.getCasilla(coordenada);
-//		FichaCastilloInfo fichaCastilloInfo=null;
-//		if(casilla!=null) {
-//			Castillo castillo=(Castillo)casilla;
-//			fichaCastilloInfo=new FichaCastilloInfo(castillo.getEjercito().getId());
-//		}
-//		return fichaCastilloInfo;
-//	}
-//	
-	public static TableroUIInfo getTableroUIIinfo(Juego juego) {
-		return new TableroUIInfo(juego.getTablero());
-	}
-	
+
 //	private static ArrayList<FichaInfo>getFichasInfo(Tablero tablero, ArrayList<Coordenada>coordenadas){
 //		ArrayList<Casilla>casillas=tablero.getCasillas(coordenadas);
 //		ArrayList<FichaInfo>fichasInfo=new ArrayList<FichaInfo>();

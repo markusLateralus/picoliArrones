@@ -34,7 +34,7 @@ public class UserInterface extends JFrame {
 	private JPanel contentPane;
 	private TableroUI tableroUI;
 	private BordeArmada bordeArmada;
-	private IniciadorController iniciadorController;
+
 	/**
 	 * Create the frame.
 	 */
@@ -68,7 +68,7 @@ public class UserInterface extends JFrame {
 	}
 	
 	public void crearTablero(IniciadorController iniciadorController) {
-		TableroUIInfo tableroUIinfo=new TableroUIInfo(iniciadorController.getJuego().getTablero());
+		TableroUIInfo tableroUIinfo=new TableroUIInfo(iniciadorController.getJuego());
 	   // Dimension dimension=new Dimension(6,12);	
 	    tableroUI=new TableroUI(iniciadorController.getDimension());
 			contentPane.add(tableroUI, BorderLayout.CENTER);

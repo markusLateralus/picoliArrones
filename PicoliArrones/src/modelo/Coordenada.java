@@ -1,5 +1,8 @@
 package modelo;
 
+import modelo.Coordenada;
+import utiles.Utiles;
+
 public class Coordenada{
 
 	
@@ -37,6 +40,18 @@ public class Coordenada{
 		}
 		return response;
 	}
+	
+	public Coordenada creaCoordenadaAlrededor(int j2) {
+		int[] posicion = Utiles.damePosicionAlrededor(j2);
+		return new Coordenada(this.getX() + posicion[0], this.getY() + posicion[1]);
+	}
+	
+	
+	
+	
+	
+	
+	
 //	@Override
 //	public int hashCode() {
 //		return getX()*10+getY();

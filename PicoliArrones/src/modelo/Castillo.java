@@ -1,8 +1,10 @@
 package modelo;
 
-import controlador.Juego;
-import vistaInfo.CasillaInfo;
-import vistaInfo.FichaCastilloInfo;
+import vistaInfo.CastilloFichaFactory;
+import vistaInfo.FichaFactory;
+import vistaInfo.FichaInfo;
+import modelo.Casilla;
+
 
 public class Castillo implements Casilla{
 
@@ -14,28 +16,16 @@ public class Castillo implements Casilla{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Ejercito getEjercito() {
-		return this.ejercito;
-	}
-
 	@Override
-	public Casilla crear(Tablero tablero, Coordenada coordenada) {
+	public FichaFactory getFactory(Ejercito ejercito) {
 		// TODO Auto-generated method stub
-		Casilla casilla = tablero.getCasilla(coordenada);
-		Castillo castillo=null;
-		//FichaCastilloInfo fichaCastilloInfo=null;
-		if(casilla!=null) {
-			for (int i = 0; i < tablero.getCoordenadasCastillos().length; i++) {
-				Coordenada cordAux=tablero.getCoordenadasCastillos()[i];
-				if(cordAux.equals(coordenada)) {
-					castillo=(Castillo)casilla;
-				return castillo;
-					//return new FichaCastilloInfo(castillo.getEjercito().getId());
-				}
-			}
-			
+		return new CastilloFichaFactory(ejercito);
 		}
-	 	
-		return null;
-	}
+	
+
+
+
+
+
+
 }

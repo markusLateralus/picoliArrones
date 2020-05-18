@@ -7,15 +7,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import vistaInfo.FichaCastilloInfo;
 
-public class FichaCastillo extends Ficha {
+public class FichaCastillo extends JPanel {
 
 	/**
 	 * Create the panel.
 	 */
-	public FichaCastillo(FichaCastilloInfo fichaCastilloInfo) {
-		super(fichaCastilloInfo);
+	public FichaCastillo(int idEjercito) {
 		setLayout(new BorderLayout(0, 0));
 		
 		JLabel lblCastlloEjercito = new JLabel("Castillo Ejercito");
@@ -23,7 +21,7 @@ public class FichaCastillo extends Ficha {
 		lblCastlloEjercito.setHorizontalAlignment(SwingConstants.CENTER);
 		add(lblCastlloEjercito, BorderLayout.CENTER);
 		
-		JLabel lblIdEjercito = new JLabel(String.valueOf(fichaCastilloInfo.getIdEjercito()));
+		JLabel lblIdEjercito = new JLabel(String.valueOf(idEjercito));
 		lblIdEjercito.setFont(new Font("Tahoma", Font.PLAIN, 33));
 		add(lblIdEjercito, BorderLayout.EAST);
 	}
