@@ -22,7 +22,7 @@ public class TableroUIInfo {
 	
 	
 	public FichaFactory[][] getFichasInfo(){
-		FichaFactory[][] fichasInfo=new FichaFactory[juego.getAncho()][juego.getAlto()];
+		FichaFactory[][] fichasInfo=new FichaFactory[juego.getAlto()][juego.getAncho()];
 		for (int i = 0; i < fichasInfo.length; i++) {
 			for (int j = 0; j < fichasInfo[i].length; j++) {
 				fichasInfo[i][j]=getFichaInfo(juego,new Coordenada(i,j));

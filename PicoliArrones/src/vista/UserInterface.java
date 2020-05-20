@@ -1,32 +1,14 @@
-package pruebasui;
+package vista;
 
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.ArrayList;
-import java.util.LinkedList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.IniciadorController;
-import controlador.Juego;
-import modelo.Batallon;
-import modelo.Coordenada;
-import modelo.Dimension;
-import modelo.Ejercito;
-import modelo.Tablero;
-import modelo.Tipo;
-import vista.MercadoSoldados;
-import vista.MercadoTipo;
-import vista.MercadoTipoDialog;
+import controlador.Controller;
 import vista.TableroUI;
-import vistaConversores.Generador;
-import vistaInfo.EjercitoInfo;
 import vistaInfo.TableroUIInfo;
 
 public class UserInterface extends JFrame {
@@ -67,10 +49,10 @@ public class UserInterface extends JFrame {
 		return bordeArmada.getBtnPoblar();
 	}
 	
-	public void crearTablero(IniciadorController iniciadorController) {
-		TableroUIInfo tableroUIinfo=new TableroUIInfo(iniciadorController.getJuego());
+	public void crearTablero(Controller controller) {
+		TableroUIInfo tableroUIinfo=new TableroUIInfo(controller.getJuego());
 	   // Dimension dimension=new Dimension(6,12);	
-	    tableroUI=new TableroUI(iniciadorController.getDimension());
+	    tableroUI=new TableroUI(controller.getAncho(), controller.getAlto());
 			contentPane.add(tableroUI, BorderLayout.CENTER);
 	}
 

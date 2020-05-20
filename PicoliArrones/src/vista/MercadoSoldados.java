@@ -9,9 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import modelo.Batallon;
-import modelo.Tipo;
-import pruebasui.MercadoSoldadosPrueba;
 import vistaConversores.Generador;
+import vistaInfo.BatallonInfo;
 import vistaInfo.EspecificacionSoldadosInfo;
 
 
@@ -25,7 +24,7 @@ public class MercadoSoldados extends JPanel {
 	private ArrayList<EspecialidadSoldado> especialidades;
 	private JLabel lblTipoSoldado;
 	private JLabel lblTotal;
-	private Batallon batallon;
+	private BatallonInfo batallon;
 	private MercadoTipo mercadoTipo;
 	private LinkedList <Batallon> batallones=new LinkedList<Batallon>();
 	//private LinkedList<Ejercito>ejercitos=new LinkedList<Ejercito>();
@@ -57,11 +56,11 @@ public class MercadoSoldados extends JPanel {
 		}
 		
 		
-	public void setBatallon(Batallon batallon) {
+	public void setBatallon(BatallonInfo batallon) {
 		this.batallon = batallon;
 	}
 
-	public MercadoSoldados(Batallon batallon) {
+	public MercadoSoldados(BatallonInfo batallon) {
 		
 		setLayout(null);
 		 this.batallon=batallon;
@@ -136,7 +135,7 @@ public class MercadoSoldados extends JPanel {
 		return lblTipoSoldado;
 	}
 
-	public Batallon getBatallon() {
+	public BatallonInfo getBatallon() {
 		return batallon;
 	}
 	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {

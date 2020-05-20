@@ -12,18 +12,16 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-
 import modelo.Coordenada;
-import modelo.Dimension;
 
 import modelo.Tipo;
-import pruebasui.UserInterface;
 import utiles.Utiles;
 import vista.Advertencia;
 import vista.MercadoSoldadoDialog;
 import vista.MercadoSoldados;
 import vista.MercadoTipo;
 import vista.MercadoTipoDialog;
+import vista.UserInterface;
 import vistaConversores.Generador;
 import vistaInfo.EspecificacionSoldadosInfo;
 
@@ -31,21 +29,19 @@ import vistaInfo.TableroUIInfo;
 
 public class ParaUI extends UserInterface {
 
-	private IniciadorController iniciadorController;
-	private MercadoSoldados mercadoSoldados;
+	private Controller controller;
 	private MercadoTipoDialog mercadoTipoDialog;
-	private MercadoTipo mercadoTipo;
 	private MercadoSoldadoDialog mercadoSoldadoDialog;
-	private Dimension dimension=new Dimension(6,12);
+	private MercadoTipo mercadoTipo;
+	private int ancho = 12, alto = 6;
 
 	public ParaUI() {
 		super();
-		iniciadorController = new IniciadorController(dimension);
-		this.crearTablero(iniciadorController);
+		controller = new Controller(ancho, alto);
+		this.crearTablero(controller);
 		this.getTableroUI().setMouseAdapter(mouseAdapter);
-		this.getTableroUI().actualizarTablero(getTableroUIInfo(iniciadorController.getJuego()));
-	
-		this.getBordeArmada().cargarEjercito(Generador.getNuevoEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
+		this.getTableroUI().actualizarTablero(getTableroUIInfo(controller.getJuego()));
+		this.getBordeArmada().cargarEjercito(Generador.getEjercitoInfo(controller.getJuego().getEjercitoActual()));
 		getBtnPoblar().addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -59,25 +55,23 @@ public class ParaUI extends UserInterface {
 					public void actionPerformed(ActionEvent e) {
 						// TODO Auto-generated method stub
 						Tipo tipo = getTipos();
-						int id = getId();
-					//Batallon batallon=new Batallon(id, tipo);
-						//batallon = juego.getEjercitoActual().getBatallonActual();
-						//batallon.setId(id);
+						// int id = getId();
+						// Batallon batallon=new Batallon(id, tipo);
+						// batallon = juego.getEjercitoActual().getBatallonActual();
+						// batallon.setId(id);
 						mercadoTipoDialog.dispose();
-						mercadoSoldados = new MercadoSoldados(iniciadorController.getJuego().getBatallonActual());
-						mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
+						MercadoSoldados mercadoSoldados = new MercadoSoldados(
+								Generador.getBatallonInfo(controller.getBatallonActual()));
+						MercadoSoldadoDialog mercadoSoldadoDialog = new MercadoSoldadoDialog(mercadoSoldados);
 						mercadoSoldadoDialog.setVisible(true);
-						//iniciadorController.poblarBatallon(getListaEjercito());
-
 						getOkButtonSoldadoDialog().addActionListener(new ActionListener() {
 							@Override
 							public void actionPerformed(ActionEvent e) {
 								// TODO Auto-generated method stub
 								if (mercadoSoldadoDialog.compruebaMax()) {
-									iniciadorController.poblarBatallon(getListaEjercito());
+									controller.poblarBatallon(mercadoSoldadoDialog.getListaEjercito());
 									// pobladorController.agregarAlEjercito(batallon);
 									getBordeArmada().getBtnPoblar().setEnabled(false);
-									getBordeArmada().update(Generador.getEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
 
 								}
 								// bordeArmada.update(Generador.getEjercitoInfo(ejercito));
@@ -92,7 +86,7 @@ public class ParaUI extends UserInterface {
 			}
 
 		});
-	
+
 	}
 
 	MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -102,26 +96,21 @@ public class ParaUI extends UserInterface {
 			JPanel panel = (JPanel) e.getSource();
 			panel.setBackground(Color.YELLOW);
 			Coordenada coordenada = Utiles.getCoordenada(panel.getName());
-			if (!iniciadorController.localizar(coordenada)) {
-				new Advertencia(iniciadorController.getError());
-			}
-			getTableroUI().actualizarTablero(getTableroUIInfo(iniciadorController.getJuego()));
-			if(iniciadorController.isLocalizarEstado()) {
+
+			if (!controller.localizar(coordenada)) {
+
+				new Advertencia(controller.getError());
+			} else {
+
 				getBordeArmada().getBtnPoblar().setEnabled(true);
-				getBordeArmada().update(Generador.getEjercitoInfo(iniciadorController.getJuego().getEjercitoActual()));
-			}else {
-				getBordeArmada().setVisible(false);
+				getBordeArmada().update(Generador.getEjercitoInfo(controller.getEjercitoActual()));
+				getBordeArmada().setVisible(controller.isLocalizarEstado());
+
 			}
-	
+			getTableroUI().actualizarTablero(getTableroUIInfo(controller.getJuego()));
 		}
-	
+
 	};
-
-
-	private int getId() {
-		// TODO Auto-generated method stub
-		return Integer.parseInt(getTextFieldId().getText().toString());
-	}
 
 	private JButton getBotonPoblar() {
 		return this.getBordeArmada().getBtnPoblar();
@@ -135,19 +124,21 @@ public class ParaUI extends UserInterface {
 		return mercadoTipo.getTipo();
 	}
 
-	public JTextField getTextFieldId() {
-		return mercadoTipo.getTextFieldId();
-	}
-
-	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
-		return mercadoSoldados.getListaEjercito();
-	}
-
+//
+//	public JTextField getTextFieldId() {
+//		return mercadoTipo.getTextFieldId();
+//	}
+//
+//	public LinkedList<EspecificacionSoldadosInfo> getListaEjercito() {
+//		return mercadoSoldados.getListaEjercito();
+//	}
+//
 	private JButton getOkButtonSoldadoDialog() {
 		return mercadoSoldadoDialog.getOkButton();
 	}
+
 	public TableroUIInfo getTableroUIInfo(Juego juego) {
 		return new TableroUIInfo(juego);
 	}
-	
+
 }

@@ -1,9 +1,8 @@
-package controlador;
+ package controlador;
 
 
 
 import java.util.ArrayDeque;
-
 
 import modelo.Batallon;
 import modelo.Blanca;
@@ -12,77 +11,70 @@ import modelo.Castillo;
 import modelo.Coordenada;
 import modelo.Dimension;
 import modelo.Ejercito;
+import modelo.Error;
 import modelo.Soldado;
 import modelo.Tablero;
-import modelo.Error;
 
 
 public class Juego {
 	
 	private Tablero tablero;
+	private int ancho, alto;
 	private ArrayDeque<Ejercito> ejercitos = new ArrayDeque<Ejercito>();
 	private boolean localizarEstado = true;
 	private Ejercito primerEjercito;
-	private Error errorActualError = null;
-private Dimension dimension;
+	private Error errorActual = null;
+	private Colocando ponerController = new PonerController();
 
+	public boolean isLocalizarEstado() {
+		return localizarEstado;
+	}
 
-	public Juego(Dimension dimension) {
-		super();
-		this.dimension=dimension;
-		this.tablero = new Tablero(this.dimension);
+	public Juego(int ancho, int alto) {
+		// TODO Auto-generated constructor stub
+		this.alto=alto;
+		this.ancho=ancho;
+		tablero = new Tablero(ancho, alto);
 		Ejercito ejercitoCero = new Ejercito(0);
-		tablero.insertar(new Castillo(ejercitoCero), new Coordenada(1,3));
-		ejercitos.offer(ejercitoCero);  //inserta al final de la cola
+		tablero.insertar(new Castillo(ejercitoCero), new Coordenada(3, 1));
+		ejercitos.offer(ejercitoCero);
 		Ejercito ejercitoUno = new Ejercito(1);
-	
-	
-
-		tablero.insertar(new Castillo(ejercitoUno), new Coordenada( dimension.getAlto()-2,3));
+		tablero.insertar(new Castillo(ejercitoUno), new Coordenada(3, ancho - 2));
 		ejercitos.offer(ejercitoUno);
-		primerEjercito = ejercitos.peek(); //recuperamos el primero de la cola
+		primerEjercito = ejercitos.peek();
 	}
 
 	public Tablero getTablero() {
 		return tablero;
 	}
-	public boolean isLocalizarEstado() {
-		return localizarEstado;
+
+	public boolean poner(Coordenada coordenada) {
+		return ponerController.colocar(this, coordenada);
 	}
-	
-	public boolean localizarBatallon(Coordenada coordenada) {
-		boolean insertar = comprobarLocalizacion(coordenada);
-		if (!insertar) {
-			errorActualError = Error.posicion;
-		} else if (localizarEstado) {
-			Ejercito ejercito = ejercitos.peek();
-			Batallon batallonActual = ejercito.getBatallonActual();
-			insertar = tablero.insertar(batallonActual, coordenada);
-			if (insertar) {
-				if (!ejercito.setSiguienteBatallon()) {
-					setSiguienteEjercito();
-				}
-			} else {
-				errorActualError = Error.ocupada;
-			}
-		}
-		return insertar && localizarEstado;
+
+	public boolean insertar(Casilla casilla, Coordenada coordenada) {
+		return tablero.insertar(casilla, coordenada);
 	}
 
 	public Error getErrorActual() {
-		Error response = errorActualError;
-		errorActualError = Error.noerror;
+		Error response = errorActual;
+		errorActual = Error.noerror;
 		return response;
 	}
 
-	private boolean comprobarLocalizacion(Coordenada coordenada) {
+	public void setErrorActual(Error errorActualError) {
+		this.errorActual = errorActualError;
+	}
+
+	boolean comprobarLocalizacion(Coordenada coordenada) {
 		return getTablero().isEnSuMitad(getEjercitoActual(), coordenada);
 	}
 
-	private void setSiguienteEjercito() {
-		ejercitos.offer(ejercitos.poll()); //poner a la cola el ejercito que está primero. CAMBIAR TURNO
+	void setSiguienteEjercito() {
+		ejercitos.offer(ejercitos.poll());
 		if (ejercitos.peek().equals(primerEjercito)) {
 			localizarEstado = false;
+			ponerController=new MoverController();
 		}
 	}
 
@@ -95,29 +87,24 @@ private Dimension dimension;
 		getBatallonActual().alistarSoldado(soldado);
 	}
 
-
-public Batallon getBatallonActual() {
-	return getEjercitoActual().getBatallonActual();
-}
-
-public Casilla getCasilla(Coordenada coordenada) {
-	Casilla casilla = tablero.getCasilla(coordenada);
-	if(casilla==null) {
-		return new Blanca();
+	public Batallon getBatallonActual() {
+		return getEjercitoActual().getBatallonActual();
 	}
-	return casilla;
-}
 
-public int getAncho() {
-	// TODO Auto-generated method stub
-	return dimension.getAncho();
-}
 
-public int getAlto() {
-	// TODO Auto-generated method stub
-	return dimension.getAlto();
-}
-
+   public int getAncho() {
+	   return ancho;
+   }
+   public int getAlto() {
+	   return alto;
+   }
+	public Casilla getCasilla(Coordenada coordenada) {
+		Casilla casilla = tablero.getCasilla(coordenada);
+		if (casilla == null) {
+			return new Blanca();
+		}
+		return casilla;
+	}
 
 
 }

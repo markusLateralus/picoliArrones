@@ -1,40 +1,30 @@
 package modelo;
 
-import java.util.ArrayList;
-
-import modelo.Coordenada;
-import modelo.Casilla;
-
 public class Tablero {
-	private Dimension dimension;
+
 	private Matriz<Coordenada, Casilla> casillas; //BIDIRECCIONAL
-	
-	public Tablero(Dimension dimension) {
-		super();
-		this.dimension=dimension;
-		casillas=new Matriz<Coordenada, Casilla>(getAlto(),getAncho());
-		
+	private int ancho, alto;
+
+	public Tablero(int ancho, int alto) {
+		this.ancho=ancho;
+		this.alto=alto;
+		// TODO Auto-generated constructor stub
+		casillas=new Matriz<Coordenada, Casilla>(alto,ancho);
 	}
-	public Dimension getDimension() {
-		return dimension;
-	}
+
 
 	public int getAncho() {
-		return dimension.getAncho();
+		return ancho;
 	}
 
 	public int getAlto() {
-		return dimension.getAlto();
+		return alto;
 	}
 
 	public Casilla getCasilla(Coordenada coordenada) {
 		return casillas.getElement(coordenada);
 	}
 
-//	private boolean validaCoordenada(Coordenada coordenada) {
-//		return coordenada.getX() >= 0 && coordenada.getY() >= 0 && coordenada.getX() < getAncho()
-//				&& coordenada.getY() < getAlto();
-//	}
 	
 	public boolean insertar(Casilla casilla,Coordenada coordenada) {
 		boolean response=false;
@@ -47,13 +37,24 @@ public class Tablero {
 	
 	public boolean isEnSuMitad(Ejercito ejercito, Coordenada coordenada) {
 		int y = coordenada.getY();
-		int mitad = getAlto() / 2;
+		int mitad = ancho / 2;
 		int positionRelativa = y - (mitad * ejercito.getId()); //es como tener la mitad del tablero
 		return positionRelativa >= 0 && positionRelativa < mitad + ejercito.getId();
 	}
 	private  boolean validaCoordenada(Coordenada posicion) {
-		return posicion.getX() >= 0 && posicion.getY() >= 0 && posicion.getX() < this.dimension.getAncho()
-				&& posicion.getY() < this.dimension.getAlto(); 
+		return posicion.getX() >= 0 && posicion.getY() >= 0 && posicion.getX() < this.getAncho()
+				&& posicion.getY() < this.getAlto(); 
+	}
+	public boolean borrar(Casilla casilla) {
+		return casillas.borrar(casilla);
+	}
+	public void conquistar(Batallon origen, Batallon destino) {
+		// TODO Auto-generated method stub
+		Coordenada clave=casillas.getClave(destino);
+		this.borrar(destino);
+		this.borrar(origen);
+		insertar(origen, clave);
+		
 	}
 
 

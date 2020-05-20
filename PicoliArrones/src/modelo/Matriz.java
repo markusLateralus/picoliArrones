@@ -36,4 +36,11 @@ public class Matriz<K,E> {
 		// TODO Auto-generated method stub
 		return getElement(k)!=null;
 	}
+
+	public boolean borrar(E casilla) {
+		// TODO Auto-generated method stub
+		E remove=elements.remove(reverse.remove(casilla));
+		return remove!=null;
+		
+	}
 }

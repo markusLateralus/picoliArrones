@@ -6,36 +6,29 @@ import java.awt.event.MouseAdapter;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import controlador.Juego;
 import modelo.Coordenada;
-import modelo.Dimension;
-import modelo.Tablero;
 import utiles.Utiles;
-import vistaInfo.FichaInfo;
-
 import vistaInfo.FichaFactory;
 import vistaInfo.TableroUIInfo;
+
 
 public class TableroUI extends JPanel {
 
 	// Cada una de las casillas representadas en el tablero
 	private JPanel[][] fichas; // usamos una matriz
 	private MouseAdapter mouseAdapter;
-	private Dimension dimension;
-//	private int ancho, alto;
+
 
 	/**
 	 * Create the panel.
 	 */
-	public TableroUI(Dimension dimension) {
+	public TableroUI(int ancho, int alto) {
 		super();
-		this.dimension = dimension;
-		//this.alto = dimension.getAlto();
-		//this.ancho = dimension.getAncho();
+
 		// this.mouseAdapter = mouseAdapter;
-		fichas = new JPanel[dimension.getAncho()][dimension.getAlto()];
+		fichas = new JPanel[alto][ancho];
 		setBorder(new EmptyBorder(5, 5, 5, 5));
-		setLayout(new GridLayout(dimension.getAncho(), dimension.getAlto(), 0, 0));
+		setLayout(new GridLayout(alto, ancho, 0, 0));
 		// actualizarTablero(tableroUIInfo);
 	}
 

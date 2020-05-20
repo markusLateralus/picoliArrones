@@ -19,8 +19,8 @@ public class Refriega {
 		while (!isAlguienSeveramenteHerido()) {
 			defensa = defensor.defender();
 			ataque = atacante.atacar();
-			staminaDefensor=infringir(defensor, ataque);//infrigir daño al defensor 
-			staminaAtacante=infringir(atacante, defensa);
+		defensor.infrigir(ataque);
+		atacante.infrigir(defensa);
 		}
 		finalizar();
 	}
@@ -31,12 +31,12 @@ public class Refriega {
 		// la defensa del defensor
 		// en caso de victoria del atacante hay que
 		// aumentar el ataque del atacante
-		defensor.incrementarExperiencia();
-		atacante.incrementarExperiencia();
-		defensor.incrementarDefensa();
+		defensor.incrementarExperiencia(incrementoExperiencia);
+		atacante.incrementarExperiencia(incrementoExperiencia);
+		defensor.incrementarDefensa(incrementoDefensa);
 		if (isVencedorAtacante())
-			atacante.incrementaAtaque();
-			atacante.incrementarDefensa();
+			atacante.incrementaAtaque(incrementoAtaque);
+			atacante.incrementarDefensa(incrementoDefensa);
 	}
 
 	private boolean isAlguienSeveramenteHerido() {
@@ -45,10 +45,6 @@ public class Refriega {
 		return defensor.getStamina()/2<staminaInicialDefensor || atacante.getStamina()/2<staminaInicialAtacante;
 	}
 
-	private float infringir(Soldado soldado, float cantidad) {
-		float stamina= (float)soldado.getStamina()-cantidad;
-		return stamina;
-	}
 
 	public Soldado getVencedor() {
 		// TODO

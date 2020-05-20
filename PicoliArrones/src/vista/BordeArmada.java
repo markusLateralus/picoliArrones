@@ -1,4 +1,4 @@
-package pruebasui;
+package vista;
 
 import java.awt.Component;
 import java.awt.Font;
@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import controlador.IniciadorController;
+
 import net.miginfocom.swing.MigLayout;
 import vistaConversores.Generador;
 import vistaInfo.EjercitoInfo;

@@ -38,9 +38,12 @@ public class Soldado {
 		return stamina;
 	}
 
-	public float defender() {
-		float valorDefensa=experiencia + Utiles.getAleatorioSesgado(1, 6, 1.2F)+ especialidad.getDefensa();
-		return valorDefensa;
+	public void infrigir(float valor) {
+		stamina-=valor;
+	}
+	public int defender() {
+	//	int valorDefensa=experiencia + Utiles.getAleatorioSesgado(1, 6, 10)+ especialidad.getDefensa();
+		return 1;//valorDefensa;
 	}
 
 	public float atacar() {
@@ -49,19 +52,19 @@ public class Soldado {
 		return valorAtaque;
 	}
 
-	public void incrementarExperiencia() {
+	public void incrementarExperiencia(int valor) {
 		// TODO Auto-generated method stub
-		experiencia++;
+		experiencia+=valor;
 	}
 
-	public void incrementarDefensa() {
+	public void incrementarDefensa(int valor) {
 		// TODO Auto-generated method stub
-		defensa++;
+		defensa+=valor;
 	}
 
-	public void incrementaAtaque() {
+	public void incrementaAtaque(int valor) {
 		// TODO Auto-generated method stub
-		ataque++;
+		ataque+=valor;
 	}
 	
 	

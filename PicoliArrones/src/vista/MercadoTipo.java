@@ -1,24 +1,21 @@
 package vista;
 
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JComboBox;
-
 import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
-import modelo.Tipo;
-import pruebasui.MercadoSoldadosPrueba;
-import vistaConversores.Generador;
-
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import modelo.Tipo;
 
 
 public class MercadoTipo extends JPanel {
 	public static JComboBox <Tipo>comboBox;
 	private ArrayList<Tipo> tipos;
 	private JTextField textFieldId;
-	 MercadoSoldadosPrueba mercadoSoldadosPrueba=MercadoSoldadosPrueba.getMercadoSoldadosPrueba();
+
 
 	/**
 	 * Create the panel.

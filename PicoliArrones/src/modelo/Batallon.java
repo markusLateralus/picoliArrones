@@ -1,11 +1,8 @@
 package modelo;
 
 import java.awt.Color;
-import java.util.ArrayList;
 import java.util.LinkedList;
 
-
-import vistaInfo.FichaInfo;
 import vistaInfo.BatallonFichaFactory;
 import vistaInfo.FichaFactory;
 
@@ -15,8 +12,7 @@ public class Batallon implements Casilla {
 	private final int maximoSoldados=10;
 	private Tipo tipo;
 	private LinkedList<Soldado>soldados=new LinkedList<Soldado>();
-	private Color colorBatallon;
-	private boolean marcada=false;
+	private Color colorAtacante;
 	public Batallon(int id, Tipo tipo) {
 		super();
 		this.id = id;
@@ -28,7 +24,7 @@ public class Batallon implements Casilla {
 	
 	public Batallon(int id, Tipo tipo,LinkedList<Soldado>soldados,Color colorBatallon) {
 		this(id,tipo);
-		this.colorBatallon=colorBatallon;
+		this.colorAtacante=colorBatallon;
 		
 	}
 	
@@ -64,37 +60,11 @@ public class Batallon implements Casilla {
 
 
 	public boolean alistarSoldado(Soldado soldado) {
-
 		//programacion por contrato
 		//
 		assert soldado.getEspecialidad().getTipo().equals(tipo):"especialidad no compatible";
 		return	soldados.add(soldado);
-		//programacion defensiva
-//		boolean comprueba=false;
-//		if(soldado.getEspecialidad().getTipo().equals(tipo)) {
-//			
-//			return	soldados.add(soldado);
-//		}
-//		
-//		
-//	return comprueba;
-	}
 
-
-
-	public boolean isMarcada() {
-		return marcada;
-	}
-	public void setMarcada(boolean marcada) {
-		this.marcada = marcada;
-	}
-	public boolean marcar() {
-	//	boolean retorno=false;
-		
-		boolean marcada= this.isMarcada();
-		this.setMarcada(!marcada);
-			return  this.isMarcada();
-		
 	}
 
 

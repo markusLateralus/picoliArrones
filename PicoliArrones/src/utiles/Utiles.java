@@ -1,5 +1,8 @@
 package utiles;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 import modelo.Coordenada;
 
 public class Utiles {
@@ -41,15 +44,21 @@ public class Utiles {
 				{ +1, +1 } };
 		return posicion[lugar];
 	}
-	public static float getAleatorioSesgado(int min,int max,float porcentajeSesgo) {
+	public static int getAleatorioSesgado(int min,int max,int porcentajeSesgo) {
 		assert max>min&& min>=0;
-		int valor=(int)((Math.random()*((max+1)-min))+min);
-		float valor2= valor * porcentajeSesgo;
-	     if(valor2>=7) {
-	    	 valor2=6;
-	         	return (int)valor2;
-	        }
-		return valor2;
+		assert porcentajeSesgo>=0 && porcentajeSesgo<=100;
+		assert porcentajeSesgo % 10==0;
+		int experimento=10;
+		ArrayList<Integer>lista=new ArrayList<Integer>();
+		for (int i = 0; i < experimento; i++) {
+			lista.add((int)((Math.random()*((max+1)-min))+min));
+		}
+		Collections.sort(lista);
+		Collections.reverse(lista);
+		min=0;
+		max=experimento - (porcentajeSesgo/experimento);
+		Integer integer=lista.get((int)((Math.random()*((max+1)-min))+min));
+		return integer;
 	}
 	
 	
