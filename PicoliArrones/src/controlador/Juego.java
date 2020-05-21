@@ -25,6 +25,7 @@ public class Juego {
 	private Ejercito primerEjercito;
 	private Error errorActual = null;
 	private Colocando ponerController = new PonerController();
+	private Casilla casillaMarcada=null;
 
 	public boolean isLocalizarEstado() {
 		return localizarEstado;
@@ -52,8 +53,18 @@ public class Juego {
 		return ponerController.colocar(this, coordenada);
 	}
 
+	public boolean mover(Casilla casilla,  Coordenada coordenadaDestino) {
+		return tablero.mover(casilla,  coordenadaDestino);
+	}
 	public boolean insertar(Casilla casilla, Coordenada coordenada) {
 		return tablero.insertar(casilla, coordenada);
+	}
+
+public void setCasillaMarcada(Coordenada coordenada) {
+	casillaMarcada= tablero.getCasilla(coordenada);
+}
+	public Casilla getCasillaMarcada() {
+		return casillaMarcada;
 	}
 
 	public Error getErrorActual() {
@@ -74,7 +85,7 @@ public class Juego {
 		ejercitos.offer(ejercitos.poll());
 		if (ejercitos.peek().equals(primerEjercito)) {
 			localizarEstado = false;
-			ponerController=new MoverController();
+			ponerController=new MoverController( );
 		}
 	}
 

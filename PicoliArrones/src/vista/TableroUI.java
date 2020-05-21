@@ -2,6 +2,7 @@ package vista;
 
 import java.awt.GridLayout;
 import java.awt.event.MouseAdapter;
+import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -17,7 +18,8 @@ public class TableroUI extends JPanel {
 	// Cada una de las casillas representadas en el tablero
 	private JPanel[][] fichas; // usamos una matriz
 	private MouseAdapter mouseAdapter;
-
+	private MouseAdapter mouseAdapter2;
+	MouseMotionAdapter mouseMotion;
 
 	/**
 	 * Create the panel.
@@ -42,6 +44,7 @@ public class TableroUI extends JPanel {
 			fichas[i][j] =  getFicha(fichasInfo[i][j]);
 				fichas[i][j].setName(Utiles.nombrar(i, j));
 				fichas[i][j].addMouseListener(mouseAdapter);
+				fichas[i][j].addMouseMotionListener(mouseAdapter2);
 				add(fichas[i][j]);
 			}
 		
@@ -70,5 +73,19 @@ public class TableroUI extends JPanel {
 		int pos = name.length() / 2;
 		return new Coordenada(Integer.valueOf(name.substring(0, pos)),
 				Integer.valueOf(name.substring(pos, name.length())));
+	}
+
+
+
+	public void setMouseMotion(MouseMotionAdapter mouseMotion) {
+		this.mouseMotion=mouseMotion;
+		
+	}
+
+
+
+	public void setMouseAdapter2(MouseAdapter mouseAdapter2) {
+		// TODO Auto-generated method stub
+		this.mouseAdapter2=mouseAdapter2;
 	}
 }

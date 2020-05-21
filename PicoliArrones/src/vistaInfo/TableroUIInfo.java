@@ -8,6 +8,7 @@ import modelo.Coordenada;
 
 
 
+
 public class TableroUIInfo {
 
 
@@ -25,7 +26,7 @@ public class TableroUIInfo {
 		FichaFactory[][] fichasInfo=new FichaFactory[juego.getAlto()][juego.getAncho()];
 		for (int i = 0; i < fichasInfo.length; i++) {
 			for (int j = 0; j < fichasInfo[i].length; j++) {
-				fichasInfo[i][j]=getFichaInfo(juego,new Coordenada(i,j));
+				fichasInfo[i][j]=getFichaInfo(juego, new Coordenada(i, j));
 			}
 		}
 		return fichasInfo;

@@ -34,7 +34,17 @@ public class Tablero {
 		}
 		return response;
 	}
-	
+
+	public boolean mover(Casilla casilla, Coordenada coordenadaDestino) {
+		// TODO Auto-generated method stub
+		boolean response=false;
+		if(casillas.contieneElemento(casilla) && !casillas.contieneClave(coordenadaDestino)) {
+			casillas.mueveElement(casilla,coordenadaDestino);
+			response=true;
+		}
+		return response;
+	}
+
 	public boolean isEnSuMitad(Ejercito ejercito, Coordenada coordenada) {
 		int y = coordenada.getY();
 		int mitad = ancho / 2;
@@ -56,6 +66,7 @@ public class Tablero {
 		insertar(origen, clave);
 		
 	}
+
 
 
 	

@@ -43,4 +43,14 @@ public class Matriz<K,E> {
 		return remove!=null;
 		
 	}
+
+	
+
+	public E mueveElement(E casilla,  K coordenadaDestino) {
+		// TODO Auto-generated method stub
+		this.borrar(casilla);
+	 return this.insertElement(coordenadaDestino,casilla);
+		
+		
+	}
 }

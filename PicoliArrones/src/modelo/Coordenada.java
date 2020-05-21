@@ -52,14 +52,14 @@ public class Coordenada{
 	
 	
 	
-//	@Override
-//	public int hashCode() {
-//		return getX()*10+getY();
-//	}
-//	@Override
-//	public String toString() {
-//		return getX()+":"+getY()+"::"+hashCode();
-//	}
+	@Override
+	public int hashCode() {
+		return getX()*10+getY();
+	}
+	@Override
+	public String toString() {
+		return getX()+":"+getY()+"::"+hashCode();
+	}
 
 	
 }
